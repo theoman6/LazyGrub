@@ -20,6 +20,20 @@ Snackage::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "gmail.com",
+  :authentication => :login,
+  :user_name => "theoman6@gmail.com",
+  :password => "Wolfsbane0",
+}
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -64,4 +78,6 @@ Snackage::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+    config.action_mailer.default_url_options = { :host => 'snackage.herokuapp.com' }
+
 end
