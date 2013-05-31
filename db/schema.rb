@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530023550) do
+ActiveRecord::Schema.define(:version => 20130530233314) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(:version => 20130530023550) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "house_dorm"
+    t.string   "room"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "order_stars"
+    t.integer  "orders"
+    t.integer  "delivery_stars"
+    t.integer  "deliveries"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
