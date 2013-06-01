@@ -16,15 +16,25 @@
   display: none;
 }
 
+.huge { 
+  font-size: 10em;
+  color: #8B0000;
+}
+
 .last_order { 
-  float: left;
+  float: right;
   width: 30%;
-  margin: 0px auto; 
+  margin: 0px auto;
+  color: #CDCD00;
 }
 .home_rest { 
-  float: left;
+  float: right;
   width: 70%;
+  clear: left;
   margin: 0px auto; 
+}
+
+.footer { 
   clear: both;
 }
 

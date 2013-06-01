@@ -1,4 +1,6 @@
 .last_order
+  %h1 Place an order
+  %hr
   =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
     = f.association :restaurant
     = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
@@ -21,3 +23,6 @@
     = f.hidden_field :payment_type, value: 'cash'
     = f.submit value: 'Place Order'
 .home_rest
+  %h1.huge Hungry?
+  %h2=link_to "No, but I'll make deliveries", deliveries_path, class: "btn btn-large btn-success"
+
