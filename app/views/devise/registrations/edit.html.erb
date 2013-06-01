@@ -6,15 +6,35 @@
 
   <div class="form-inputs">
     <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :first_name, :required => true %>
-    <%= f.input :last_name, :required => true %>
+    <div class='row-fluid'>
+      <div class="span6">
+        <%= f.input :first_name, :required => true %>
+      </div>
+      <div class="span6">
+        <%= f.input :last_name, :required => true %>
+      </div>
+    </div>
     <%= f.input :phone_number, :required => true %>
-    <%= f.input :house_dorm %>
-    <%= f.input :room %>
+    <div class='row-fluid'>
+      <div class='span8'>
+        <%= f.input :house_dorm %>
+      </div> 
+      <div class='span4'>
+        <%= f.input :room %>
+      </div>
+    </div>
     <%= f.input :address %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :zipcode %>
+    <div class='row-fluid'>
+      <div class='span4'>
+        <%= f.input :city %>
+      </div> 
+      <div class='span4'>
+        <%= f.input :state %>
+      </div>
+      <div class='span4'>
+        <%= f.input :zipcode %>
+      </div> 
+    </div> 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>

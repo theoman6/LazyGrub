@@ -4,7 +4,9 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box
 }
-
+select.time { 
+  width: 40%;
+}
 #error_explanation { 
 	color: #f00;
 	ul { 
@@ -25,7 +27,6 @@
   float: right;
   width: 30%;
   margin: 0px auto;
-  color: #CDCD00;
 }
 .home_rest { 
   float: right;

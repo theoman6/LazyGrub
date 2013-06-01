@@ -6,8 +6,14 @@
 
     <div class="form-inputs">
       <%= f.input :email, :required => true, :autofocus => true %>
-      <%= f.input :first_name, :required => true %>
-      <%= f.input :last_name, :required => true %>
+      <div class='row-fluid'>
+        <div class="span6">
+          <%= f.input :first_name, :required => true %>
+        </div>
+        <div class="span6">
+          <%= f.input :last_name, :required => true %>
+        </div>
+      </div>
       <%= f.input :password, :required => true %>
       <%= f.input :password_confirmation, :required => true %>
       <%= f.input :phone_number, :required => true %>
@@ -15,12 +21,26 @@
       <%= link_to_function "Hide/Show Optional Fields", "$('#optionals').toggle()" %>
       <br><hr> 
       <div id='optionals'>
-        <%= f.input :house_dorm , :label => 'House/Hall' %>
-        <%= f.input :room %>
+        <div class='row-fluid'>
+          <div class='span8'>
+            <%= f.input :house_dorm %>
+          </div> 
+          <div class='span4'>
+            <%= f.input :room %>
+          </div>
+        </div>
         <%= f.input :address %>
-        <%= f.input :city %>
-        <%= f.input :state %>
-        <%= f.input :zipcode %>
+        <div class='row-fluid'>
+          <div class='span4'>
+            <%= f.input :city %>
+          </div> 
+          <div class='span4'>
+            <%= f.input :state %>
+          </div>
+          <div class='span4'>
+            <%= f.input :zipcode %>
+          </div> 
+        </div> 
       </div>
     </div>
 

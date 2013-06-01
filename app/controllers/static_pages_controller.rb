@@ -15,9 +15,9 @@ class StaticPagesController < ApplicationController
           @order[:zip] = current_user.zip
         end
       else
-        temp = @order[:id]
         @order = last
-        @order[:id] = temp
+        @order[:id] = nil
+        @order[:expiration] = 1.hour.from_now
       end
     end
   end
