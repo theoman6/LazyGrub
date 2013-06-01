@@ -12,6 +12,21 @@
 		margin: 0 0 18px 0;
 	} 
 }
+#address { 
+  display: none;
+}
+
+.last_order { 
+  float: left;
+  width: 30%;
+  margin: 0px auto; 
+}
+.home_rest { 
+  float: left;
+  width: 70%;
+  margin: 0px auto; 
+  clear: both;
+}
 
 .users { 
 	list-style: none;

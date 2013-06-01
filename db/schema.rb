@@ -11,7 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530233314) do
+ActiveRecord::Schema.define(:version => 20130601043325) do
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "claimer_id"
+    t.string   "phone_number"
+    t.string   "house_dorm"
+    t.string   "room"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.time     "expiration"
+    t.boolean  "paid"
+    t.integer  "restaurant_id"
+    t.text     "description"
+    t.integer  "cost"
+    t.integer  "tip"
+    t.integer  "total"
+    t.string   "payment_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "orders", ["user_id", "claimer_id"], :name => "index_orders_on_user_id_and_claimer_id"
+
+  create_table "restaurants", :force => true do |t|
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

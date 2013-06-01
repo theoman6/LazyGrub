@@ -1,2 +1,23 @@
+.last_order
+  =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
+    = f.association :restaurant
+    = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
+    = f.input :cost
+    = f.input :tip
+    = f.input :total
 
-%h1 This will be the home page
+    #house
+      = f.input :house_dorm, collection: HOUSES, label: 'House/Hall'
+      = f.input :room
+    #address
+      = f.input :address
+      = f.input :city
+      = f.input :state
+      = f.input :zip
+    = link_to_function "Toggle Location Type", "$('#house').toggle();$('#address').toggle()"
+    <br><br>
+    = f.input :phone_number
+    = f.input :expiration, as: :time
+    = f.hidden_field :payment_type, value: 'cash'
+    = f.submit value: 'Place Order'
+.home_rest
