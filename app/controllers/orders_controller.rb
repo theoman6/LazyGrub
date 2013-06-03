@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(params[:order])
     if @order.save
       flash[:success] = 'Order placed'
-      redirect_to root_path
+      redirect_to deliveries_path
     else 
       render 'static_pages/home'
     end
