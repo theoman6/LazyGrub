@@ -1,9 +1,0 @@
-.restaurant_form
-  =simple_form_for @restaurant, :html => {:method => :post}, :url => url_for(:action => 'update', :controller => 'restaurants') do |f|
-    = f.input :name, :label => 'Restaurant name'
-    = f.input :address
-    .row-fluid
-      .span4=f.input :city
-      .span4=f.input :state
-      .span4=f.input :zip, :label => 'Zipcode'
-    = f.submit value: 'Update Restaurant'
