@@ -1,0 +1,15 @@
+-provide(:title, 'Restaurants')
+
+%h1 Create a Restaurant
+<em> It will need to be approved before being visible to users </em> 
+<br><br>
+
+.restaurant_form
+  =simple_form_for @restaurant, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'restaurants') do |f|
+    = f.input :name, :label => 'Restaurant name'
+    = f.input :address
+    .row-fluid
+      .span4=f.input :city
+      .span4=f.input :state
+      .span4=f.input :zip, :label => 'Zipcode'
+    = f.submit value: 'Create Restaurant'

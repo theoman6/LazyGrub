@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601043325) do
+ActiveRecord::Schema.define(:version => 20130608160143) do
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "cost"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "restaurant_id"
+  end
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
@@ -38,10 +47,15 @@ ActiveRecord::Schema.define(:version => 20130601043325) do
   add_index "orders", ["user_id", "claimer_id"], :name => "index_orders_on_user_id_and_claimer_id"
 
   create_table "restaurants", :force => true do |t|
-    t.string   "location"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.boolean  "approved"
+    t.string   "address"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -74,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130601043325) do
     t.integer  "orders"
     t.integer  "delivery_stars"
     t.integer  "deliveries"
+    t.integer  "clearance"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

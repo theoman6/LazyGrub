@@ -1,0 +1,11 @@
+-provide(:title, 'Create Item')
+
+%h1 Create an Item
+
+.restaurant_form
+  =simple_form_for @item, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'items') do |f|
+    =f.hidden_field :restaurant_id, :value => current_user.restaurants.last[:id] 
+    =f.input :name, :label => 'Item name'
+    =f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
+    =f.input :cost
+    =f.submit value: 'Create Item'

@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+  before_filter :check_restaurant, :only => [:restaurants, :items]
+  before_filter :check_has_restaurant, :only => [:items]
+
   def home
     @order = Order.new
     if user_signed_in? 
@@ -17,9 +20,9 @@ class StaticPagesController < ApplicationController
       else
         @order = last
         @order[:id] = nil
-        @order[:expiration] = 1.hour.from_now
       end
     end
+    @order[:expiration] = 1.hour.from_now
   end
   
   def about 
@@ -29,5 +32,28 @@ class StaticPagesController < ApplicationController
   end
   
   def destroy
+  end
+
+  def restaurants
+    @restaurant = Restaurant.new
+  end
+
+  def items
+    @item = Item.new
+  end
+  def check_restaurant
+    if user_signed_in?
+      if current_user.clearance < 1 
+        flash[:alert] = "This is not a restaurant account"
+        redirect_to root_path
+      end
+    else 
+      flash[:alert] = "Sign in"
+      redirect_to new_user_session_path
+    end
+  end
+
+  def check_has_restaurant 
+    current_user.restaurants.length > 0
   end
 end
