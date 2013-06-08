@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
 	end
 
 	def create
-    binding.pry
     @item = Item.create(params[:item])
     if @item.save
       flash[:success] = 'Created ' + @item.name + ' for ' + Restaurant.find(@item.restaurant_id).name
