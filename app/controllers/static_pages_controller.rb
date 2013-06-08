@@ -36,11 +36,19 @@ class StaticPagesController < ApplicationController
 
   def restaurants
     @restaurant = Restaurant.new
+    @restaurants = current_user.restaurants.all
   end
 
   def items
-    @item = Item.new
+    binding.pry
+    @item = Restaurant.find(params[:restaurant]).items.new
   end
+
+  def edit_restaurant
+    @restaurant = Restaurant.find(params[:restaurant])
+  end
+
+
   def check_restaurant
     if user_signed_in?
       if current_user.clearance < 1 

@@ -1,0 +1,10 @@
+-provide(:title, 'New Item')
+
+%h1 Create an Item 
+
+.item_form
+	=simple_form_for @item, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'items') do |f|
+		=f.input :name, :label => 'Item name'
+		=f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
+		=f.input :cost
+		=f.submit value: 'Add Item'

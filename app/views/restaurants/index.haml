@@ -1,0 +1,13 @@
+-provide(:title, 'My Restaurants')
+
+-if @restaurants.length > 0 
+	%h3 Which restaurant would you like to enter?
+	%ul 
+		-@restaurants.each do |rest|
+			%li
+				=link_to "Edit #{rest.name}", edit_restaurant_path(rest[:id])
+				="  |  "
+				=link_to "Manage Menu Items", restaurant_items_path(rest[:id])
+
+
+

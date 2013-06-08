@@ -5,12 +5,12 @@ Snackage::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/deliveries', to: 'static_pages#deliveries'
-  match '/restaurant_portal', to: 'static_pages#restaurants'
-  match '/items_create', to: 'static_pages#items'
 
-  resources :orders, only: [:create, :destroy] 
-  resources :restaurants, only: [:create, :destroy] 
-  resources :items, only: [:create, :destroy] 
+
+  resources :orders
+  resources :restaurants do 
+    resources :items
+  end
 
 
 

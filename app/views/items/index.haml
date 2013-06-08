@@ -1,0 +1,15 @@
+-provide(:title, 'Items')
+
+
+= button_to "Add Item", new_restaurant_item_path(params[:restaurant_id]), :method => :get
+-if @items.length > 0 
+	%h3 Which item are you interested in?
+	%ul 
+		-@items.each do |item|
+			%li
+				=link_to "Edit #{item.name}", edit_restaurant_item_path(params[:restaurant_id], item[:id])
+
+
+
+
+
