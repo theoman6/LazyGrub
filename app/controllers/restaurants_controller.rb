@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
 	end
 
   def index
-    @restaurants = current_user.restaurants.all
+    @restaurants = current_user.clearance > 2 ? Restaurant.all : current_user.restaurants.all 
   end
 
   def edit
