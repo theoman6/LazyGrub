@@ -34,4 +34,11 @@ class ItemsController < ApplicationController
       redirect_to restaurant_items_path(params[:restaurant_id])
   end      
 
+  def list
+    @items_list = Restaurant.find(params[:restaurant_id]).items.all
+    @order = Order.new
+    render :layout => false
+  end
+
+
 end

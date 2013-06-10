@@ -1,0 +1,8 @@
+<% sum = 0.0 %> 
+<% @items.each do |item| %>
+	<% sum += Item.find(item)[:cost] %> 
+<% end %> 
+
+var total = <%= sum %> ;
+$('#order_cost').val(total);
+change_total();

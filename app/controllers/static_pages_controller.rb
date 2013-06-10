@@ -1,11 +1,10 @@
 class StaticPagesController < ApplicationController
-  before_filter :check_restaurant, :only => [:restaurants, :items]
-  before_filter :check_has_restaurant, :only => [:items]
 
   def home
     @order = Order.new
     if user_signed_in? 
       last = current_user.orders.last
+      last[:items] = last.items.pluck(:item_id)
       if last.nil?
         @order[:phone_number] = current_user.phone_number
         if  (!current_user.house_dorm.nil? && !current_user.room.nil?)
@@ -34,34 +33,11 @@ class StaticPagesController < ApplicationController
   def destroy
   end
 
-  def restaurants
-    @restaurant = Restaurant.new
-    @restaurants = current_user.restaurants.all
+  def prices
+    @items = params[:items].nil? ? [] : params[:items]
+    render :layout => false
+
   end
 
-  def items
-    binding.pry
-    @item = Restaurant.find(params[:restaurant]).items.new
-  end
-
-  def edit_restaurant
-    @restaurant = Restaurant.find(params[:restaurant])
-  end
-
-
-  def check_restaurant
-    if user_signed_in?
-      if current_user.clearance < 1 
-        flash[:alert] = "This is not a restaurant account"
-        redirect_to root_path
-      end
-    else 
-      flash[:alert] = "Sign in"
-      redirect_to new_user_session_path
-    end
-  end
-
-  def check_has_restaurant 
-    current_user.restaurants.length > 0
-  end
+ 
 end

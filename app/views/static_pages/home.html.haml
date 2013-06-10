@@ -3,9 +3,13 @@
   %hr
   =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
     = f.association :restaurant
-    = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
+    - item_list = @order.restaurant.items.all 
+    - 
+    = f.association(:items, collection: @order.restaurant.items.all, as: :check_boxes, :wrapper_html => {:id => 'items-list'})
+    %br
+    = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
     .row-fluid
-      .span3=f.input :cost, :class => "input-small" 
+      .span3=f.input :cost, :class => "input-small", :readonly => true
       .span1 +
       .span3= f.input :tip, :class => "input-small" 
       .span1= '='

@@ -5,11 +5,16 @@ Snackage::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/deliveries', to: 'static_pages#deliveries'
+  get '/static_pages/prices'
 
+  resources :orders 
 
-  resources :orders
   resources :restaurants do 
-    resources :items
+    resources :items do 
+      collection do 
+        get :list
+      end
+    end
   end
 
 
