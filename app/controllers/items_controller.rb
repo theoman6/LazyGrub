@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
     params[:item][:category_id] = 'Miscellaneous' if params[:item][:category_id] == ''
     category = rest.categories.where(:name => params[:item][:category_id])
     if category.blank?
-      category = rest.categories.create(:name => params[:item][:category_id])
+      category = [rest.categories.create(:name => params[:item][:category_id])]
     end
     params[:item][:category_id] = category[0][:id]
 
