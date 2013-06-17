@@ -1,3 +1,6 @@
-var info = '<%= j(items_collection(@order, @items_list)) %>'
+var info = '<%= j(items_collection(@order, @rest)) %>'
 $('#items-list').html($("<div/>").html(info).text());
+$(".check_boxes").change(function() {
+		get_prices();
+});
 get_prices();

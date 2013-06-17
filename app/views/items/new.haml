@@ -1,5 +1,13 @@
 -provide(:title, 'New Item')
 
+:javascript
+	var categories = #{@categories.to_json}
+	$(document).ready(function(){
+		$("#category").autocomplete({
+			source: categories
+		});
+	});
+
 %h1 Create an Item 
 
 .item_form
@@ -7,4 +15,5 @@
 		=f.input :name, :label => 'Item name'
 		=f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Order Description'
 		=f.input :cost
+		=f.association :category, as: :string, input_html: {id: 'category'}
 		=f.submit value: 'Add Item'

@@ -3,8 +3,15 @@
   %hr
   =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
     = f.association :restaurant
-    - item_list = @order.restaurant.nil? ? [] : @order.restaurant.items.all 
-    = f.association(:items, collection: item_list, as: :check_boxes, :wrapper_html => {:id => 'items-list'})
+    #items-list
+      - item_list = {}
+      - if @order.restaurant
+        - @order.restaurant.categories.each do |category|
+          - item_list[category[:name]] = category.items
+      - item_list.each_key do |category|
+        -unless item_list[category].empty?
+          %h4= category
+          = f.association(:items, collection: item_list[category], as: :check_boxes, :label => false)
     %br
     = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
     .row-fluid

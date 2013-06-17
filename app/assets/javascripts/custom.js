@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var categories = ["boobs"];
 	$("#order_cost").change(change_total);
 	$("#order_tip").change(change_total);
 	$("#order_restaurant_id").change(function() {
@@ -17,7 +18,7 @@ function change_total(){
 
 function get_prices(){
 	var selected = new Array();
-	$('#items-list input:checked').each(function() { 
+	$('input:checked').each(function() { 
 		selected.push($(this).val());
 
 	});
