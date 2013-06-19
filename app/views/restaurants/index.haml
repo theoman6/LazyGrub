@@ -1,5 +1,7 @@
 -provide(:title, 'My Restaurants')
 
+= link_to "Create a restaurant", new_restaurant_path, class: 'btn, btn-success btn-large'
+<br><br>
 -if @restaurants.length > 0 
 	%h3 Which restaurant would you like to enter?
 	%ul 

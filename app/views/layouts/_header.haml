@@ -7,8 +7,7 @@
         %ul.nav.pull-right
           -if signed_in?
             -if current_user.clearance > 0
-              %li= link_to "Create a restaurant", new_restaurant_path
-              %li= link_to "Manage restaurants", restaurants_path
+              %li= link_to "Restaurant Portal", restaurants_path
           %li= link_to "Home", root_path
           %li= link_to "Help", help_path
           -if signed_in? 
