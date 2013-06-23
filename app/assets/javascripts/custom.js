@@ -12,7 +12,8 @@ $(document).ready(function(){
 	$(".accordion").accordion({
 		heightStyle: 'content',
 		collapsible: true,
-		autoHeight: false
+		autoHeight: false,
+		active :false
 	});
 	get_prices();
 });
