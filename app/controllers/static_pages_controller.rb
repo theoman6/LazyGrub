@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @order = Order.new
     if user_signed_in? 
       last = current_user.orders.last
-      last[:items] = last.items.pluck(:item_id)
+      @items = current_user.orders.last.items
       if last.nil?
         @order[:phone_number] = current_user.phone_number
         if  (!current_user.house_dorm.nil? && !current_user.room.nil?)
@@ -32,12 +32,5 @@ class StaticPagesController < ApplicationController
   
   def destroy
   end
-
-  def prices
-    @items = params[:items].nil? ? [] : params[:items]
-    render :layout => false
-
-  end
-
  
 end

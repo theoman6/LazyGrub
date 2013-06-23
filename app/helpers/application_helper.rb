@@ -17,7 +17,12 @@ module ApplicationHelper
 					item_list.each_key do |category| 
 						unless item_list[category].empty?
 							i << "<h4> #{category} </h4>"
-							i << f.association(:items, collection: item_list[category], as: :check_boxes, :label => false)
+              item_list[category].each do |item|
+                i << "<div class='control-group integer order_items_quantities> <div class = 'controls> <div class = 'row-fluid'> "
+                i << "<div class ='span6'>" + item.name.to_s + ' $' + item.cost.to_s + "</div>"
+                i << '<div class ="span6"> <input type = "number" id = "item_' + item.id.to_s + '_quantity"' + 'class = "numeric integer item_quantities" name = "order[item_ids][' + item.id.to_s + ']" value = "0" data-cost = "' + item.cost.to_s + '">' 
+								i << "</input></div></div></div></div>"
+							end
 						end
 					end
 				end

@@ -14,7 +14,14 @@
           - item_list.each_key do |category|
             -unless item_list[category].empty?
               %h4= category
-              = f.association(:items, collection: item_list[category], as: :check_boxes, :label => false)
+              -item_list[category].each do |item|
+                .control-group.integer.order_items_quantities
+                  .controls
+                    .row-fluid
+                      .span6
+                        = "#{item.name} $#{item.cost}"
+                      .span6
+                        %input{:type => 'number', :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{(@items.select{|i| i[:id] == item.id}).length || 0}", :'data-cost' => "#{item.cost}"} 
         %br
         = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
         .row-fluid

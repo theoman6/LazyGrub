@@ -6,9 +6,10 @@ $(document).ready(function(){
 		var id = (this).options[(this).selectedIndex].value;
 		$.getScript('/restaurants/' + id + '/items/list');
 	});
-	$(".check_boxes").change(function() {
+	$(".item_quantities").change(function() {
 		get_prices();
 	});
+	get_prices();
 });
 
 function change_total(){
@@ -17,17 +18,13 @@ function change_total(){
 };
 
 function get_prices(){
-	var selected = new Array();
-	$('input:checked').each(function() { 
-		selected.push($(this).val());
-
+	var total = 0.0;
+	$('.item_quantities').each(function() { 
+		console.log('q = ' + $(this).val());
+		console.log('cost' + $(this).data('cost'));
+		total += ($(this).val() * $(this).data('cost'));
 	});
-	var url = 'static_pages/prices?';
-	for (var i = 0; i < selected.length; i++) { 
-		if (url != 'static_pages/prices?') { 
-			url +=  '&';
-		}
-		url += 'items[]=' + selected[i];
-	}
-	$.getScript(url);
+	console.log('total' + total)
+	$('#order_cost').val(total);
+	change_total();
 };
