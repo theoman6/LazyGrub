@@ -9,6 +9,10 @@ $(document).ready(function(){
 	$(".item_quantities").change(function() {
 		get_prices();
 	});
+	$(".accordion").accordion({
+		heightStyle: 'fill',
+		collapsible: true
+	});
 	get_prices();
 });
 
@@ -20,11 +24,8 @@ function change_total(){
 function get_prices(){
 	var total = 0.0;
 	$('.item_quantities').each(function() { 
-		console.log('q = ' + $(this).val());
-		console.log('cost' + $(this).data('cost'));
 		total += ($(this).val() * $(this).data('cost'));
 	});
-	console.log('total' + total)
 	$('#order_cost').val(total);
 	change_total();
 };
