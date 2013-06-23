@@ -10,8 +10,9 @@ $(document).ready(function(){
 		get_prices();
 	});
 	$(".accordion").accordion({
-		heightStyle: 'fill',
-		collapsible: true
+		heightStyle: 'content',
+		collapsible: true,
+		autoHeight: false
 	});
 	get_prices();
 });
