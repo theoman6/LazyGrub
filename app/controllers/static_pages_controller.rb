@@ -3,9 +3,9 @@ class StaticPagesController < ApplicationController
   def home
     @order = Order.new
     if user_signed_in? 
-      last = current_user.orders.last
-      @items = current_user.orders.last.items
-      if last.nil?
+      last_order = current_user.orders.last
+      @items = last_order ? last_order.items : nil
+      if last_order.nil?
         @order[:phone_number] = current_user.phone_number
         if  (!current_user.house_dorm.nil? && !current_user.room.nil?)
           @order[:house_dorm] = current_user.house_dorm
@@ -17,7 +17,7 @@ class StaticPagesController < ApplicationController
           @order[:zip] = current_user.zip
         end
       else
-        @order = last
+        @order = last_order
         @order[:id] = nil
       end
     end
