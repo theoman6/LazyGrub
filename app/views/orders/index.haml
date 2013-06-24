@@ -29,6 +29,7 @@
 						%h5 Tip: #{order.tip}
 						%h5 Total: #{order.total}
 						%h5 Description: #{order.description}
+						%h6 Buy something!
 				%tr{:id => "table_row_#{order.id}"}
 					%th.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%th.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
