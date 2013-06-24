@@ -14,7 +14,8 @@
                 - item_list[category[:name]] = category.items
             - item_list.each_key do |category|
               -unless item_list[category].empty?
-                %h3= category
+                %h3
+                  %a{:href => '#'}= category
                 .tab
                   -item_list[category].each do |item|
                     .control-group.integer.order_items_quantities
