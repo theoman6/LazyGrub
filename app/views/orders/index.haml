@@ -41,7 +41,7 @@
 						%i.icon-plus
 					%th.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + ' tip'
 					%th.toolT{:title => "User's Rating"}
-						-Random.rand(1..5).times do 
+						-Random.rand(5).times do 
 							%i.icon-star
 					%th.toolT{:title => "Order Expiration:"}= order.expiration.strftime("%l:%M %p")
 -else 
