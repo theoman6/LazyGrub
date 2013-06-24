@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require jquery-ui.min
 //= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require_tree .
+

@@ -10,6 +10,10 @@ gem 'haml-rails'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
+gem 'jquery-datatables-rails'
+gem 'jquery-ui-rails'
+
+
 
 group :development do
   gem 'pry'

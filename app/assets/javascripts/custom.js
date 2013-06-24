@@ -15,7 +15,23 @@ $(document).ready(function(){
 		autoHeight: false,
 		active :false
 	});
+	$('.toolT').tooltip();
 	get_prices();
+
+	$('#orders').dataTable({
+		'aoColumns': [
+			{ 'bSortable': false},
+			null,
+			{ 'bSortable': false},
+			null,
+			null, 
+			{ 'bSortable': false},
+			null,
+			null,
+			null
+		],
+		bJQueryUI: true
+	});
 });
 
 function change_total(){

@@ -1,1 +1,47 @@
-%h1 This is the Deliveries page
+
+
+%h1 Claim an Order for Delivery
+-unless @orders.length == 0
+	%table{:id => 'orders', :class => 'display'}
+		%thead
+			%tr
+				%th
+				%th.tb-r Restaurant
+				%th
+				%th.tb-l Destination
+				%th Cost
+				%th
+				%th Tip
+				%th Rat.
+				%th Exp
+		%tbody
+			-@orders.each do |order|
+				.modal.hide.fade{:tabindex => '-1', :id=> "order_#{order.id}_details", :role => 'dialog', :'aria-labelledby' => "order-#{order.id}Label", :'aria-hidden' => 'true'}
+					.modal-header
+						%h3{:id => "order-#{order.id}Label"} Order Details
+						%button{:class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} x 
+					.modal-body
+						%h5 Deliver to: #{order.house_dorm ? order.house_dorm.to_s + ' ' + order.room.to_s : order.address.to_s}
+						%h5 Items: 
+						-order.items.each do |item| 
+							=item.name.to_s
+						%h5 Cost: #{order.cost}
+						%h5 Tip: #{order.tip}
+						%h5 Total: #{order.total}
+						%h5 Description: #{order.description}
+				%tr{:id => "table_row_#{order.id}"}
+					%th.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
+					%th.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
+					%th
+						%i.icon-arrow-right
+					%th.tb-l.toolT{:title => 'Destination'}=(order.house_dorm || order.address)
+					%th.tb-r.toolT{:title => 'Order Cost'}='$' + order.cost.to_s
+					%th
+						%i.icon-plus
+					%th.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + ' tip'
+					%th.toolT{:title => "User's Rating"}
+						-Random.rand(1..5).times do 
+							%i.icon-star
+					%th.toolT{:title => "Order Expiration:"}= order.expiration.strftime("%l:%M %p")
+-else 
+	%h2 No orders to display... #{link_to('Order food', root_path)}

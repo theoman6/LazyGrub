@@ -57,10 +57,6 @@ select.time {
 	} 
 } 
 
-.tab { 
-	height: 100%;
-}
-
 .form-div { 
 	margin: 0px auto;
 	width: 400px;
@@ -224,6 +220,19 @@ p {
 	line-height: 1.7em;
 }
 
+.tb-r { 
+	text-align: right;
+}
+
+.tb-l { 
+	text-align: left;
+}
+
+.tb-m {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #logo { 
 	float: left;
 	margin-right: 10px;
@@ -234,6 +243,10 @@ p {
 	padding-top: 9px;
 	font-weight: bold;
 	line-height: 1;
+}
+
+th {
+	font-size: x-large;
 }
 
 #logo:hover { 
@@ -265,4 +278,13 @@ footer {
 			margin-left: 10px;
 		}
 	}
+}
+
+.ui-toolbar {
+	display: none;
+}
+
+
+#orders thead{
+	display: none;
 }
