@@ -14,9 +14,8 @@
                 - item_list[category[:name]] = category.items
             - item_list.each_key do |category|
               -unless item_list[category].empty?
-                %h3
-                  %a{:href => '#'}= category
-                .tab
+                %h3.header-accordion{:title => "#{category}"}= category
+                .tab-accordion
                   -item_list[category].each do |item|
                     .control-group.integer.order_items_quantities
                       .controls
@@ -24,7 +23,7 @@
                           .span6
                             = "#{item.name} $#{item.cost}"
                           .span6
-                            %input{:type => 'number', :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{(@items.select{|i| i[:id] == item.id}).length || 0}", :'data-cost' => "#{item.cost}"} 
+                            %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{@items ? (@items.select{|i| i[:id] == item.id}).length || 0 : 0}", :'data-cost' => "#{item.cost}"} 
         %br
         = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
         .row-fluid
@@ -46,7 +45,6 @@
         = link_to_function "Toggle Location Type", "$('#house').toggle();$('#address').toggle()"
         <br><br>
         = f.input :phone_number
-        .row-fluid= f.input :expiration, as: :time, :ampm => true, label: "Time this offer expires"
         = f.hidden_field :payment_type, value: 'cash'
         .modal-footer
           %button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close

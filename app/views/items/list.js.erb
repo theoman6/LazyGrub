@@ -1,9 +1,9 @@
 var info = '<%= j(items_collection(@order, @rest)) %>'
 $('#items-list').html($("<div/>").html(info).text());
 $(".item_quantities").change(function() {
-		get_prices();
+		update_order_form();
 	});
-get_prices();
+update_order_form();
 $(".accordion").accordion({
 	heightStyle: 'content',
 	collapsible: true,

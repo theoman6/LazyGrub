@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = Order.where('expiration > ?', Time.now.utc - 4.hours)
+    @orders = Order.where('updated_at > ?', Time.now - 1.hour)
   end
 
   def new
@@ -15,10 +15,12 @@ class OrdersController < ApplicationController
       params['order']['item_ids'].concat([key] * value.to_i)
     end
     @order = current_user.orders.build(params['order'])
+    binding.pry
     if @order.save
       flash[:success] = 'Order placed'
       redirect_to orders_path
     else 
+      flash[:alert] = "Order failed"
       render 'static_pages/home'
     end
   end

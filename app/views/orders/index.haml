@@ -43,6 +43,6 @@
 					%th.toolT{:title => "User's Rating"}
 						-Random.rand(5).times do 
 							%i.icon-star
-					%th.toolT{:title => "Order Expiration:"}= order.expiration.strftime("%l:%M %p")
+					%th.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 -else 
 	%h2 No orders to display... #{link_to('Order food', root_path)}

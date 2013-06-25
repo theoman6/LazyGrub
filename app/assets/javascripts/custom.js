@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$.getScript('/restaurants/' + id + '/items/list');
 	});
 	$(".item_quantities").change(function() {
-		get_prices();
+		update_order_form();
 	});
 	$(".accordion").accordion({
 		heightStyle: 'content',
@@ -16,7 +16,7 @@ $(document).ready(function(){
 		active :false
 	});
 	$('.toolT').tooltip();
-	get_prices();
+	update_order_form();
 
 	$('#orders').dataTable({
 		'aoColumns': [
@@ -37,6 +37,22 @@ $(document).ready(function(){
 function change_total(){
    var total = Number($('#order_cost').val()) + Number($('#order_tip').val());
    $('#order_total').val(total);
+};
+
+function update_order_form(){ 
+	get_prices();
+	get_headers();
+};
+
+function get_headers(){ 
+	$('.tab-accordion').each(function() {
+		var total = 0.0;
+		$(this).find('input').each(function(){
+			total += parseInt($(this).val());
+		});
+		h = $(this).prev('h3');
+		h.text((h.attr('title') + ' (' + total + ')').toString());
+	});
 };
 
 function get_prices(){

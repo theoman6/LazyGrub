@@ -21,7 +21,6 @@ class StaticPagesController < ApplicationController
         @order[:id] = nil
       end
     end
-    @order[:expiration] = 1.hour.from_now
   end
   
   def about 
