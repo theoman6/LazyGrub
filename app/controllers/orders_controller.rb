@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
       params['order']['item_ids'].concat([key] * value.to_i)
     end
     @order = current_user.orders.build(params['order'])
-    binding.pry
     if @order.save
       flash[:success] = 'Order placed'
       redirect_to orders_path
