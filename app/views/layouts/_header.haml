@@ -16,5 +16,24 @@
           -else
             %li=link_to 'Sign up', new_user_registration_path
             %li=link_to 'Sign in', new_user_session_path
+-if !@order_index.nil?
+  %header.navbar.navbar-fixed-top.under-top.under-top-height
+    .navbar-inner.under-top-height 
+      .container.room-top
+        %ul.nav
+          %li.nav-space  Sort By:
+          %li.nav-space
+            %select.header-select#sort_by
+              %option{:value => '1'}Restaurant
+              %option{:value => '3'}Destination
+              %option{:value => '5'}Cost
+              %option{:value => '8'}Tip
+              %option{:value => '9'}Rating
+              %option{:value => '11'}Expiration
+          %li.nav-space 
+            %select.header-select#asc-desc
+              %option{:value => 'asc'}Asc
+              %option{:value => 'desc'}Desc
+  .header2space
             
 

@@ -1,5 +1,6 @@
+var sort = 'desc';
+
 $(document).ready(function(){
-	var categories = ["boobs"];
 	$("#order_cost").change(change_total);
 	$("#order_tip").change(change_total);
 	$("#order_restaurant_id").change(function() {
@@ -18,22 +19,34 @@ $(document).ready(function(){
 	$('.toolT').tooltip();
 	update_order_form();
 
-	$('#orders').dataTable({
+	var table = $('#orders').dataTable({
 		'aoColumns': [
-			{ 'bSortable': false},
+			{'bSortable': false},
 			null,
-			{ 'bSortable': false},
-			null,
-			null, 
-			{ 'bSortable': false},
+			{'bSortable': false},
 			null,
 			null,
-			null
+			{'bVisible': false}, 
+			{'bSortable': false},
+			null,
+			{'bVisible': false},
+			null,
+			null,
+			{'bVisible': false}
 		],
 		bJQueryUI: true
 	});
+
+	$('#sort_by, #asc-desc').change(function() {
+		table.fnSort([[$('#sort_by').val(), $('#asc-desc').val()]]);
+	});
 });
 
+
+function sort_table(){ 
+	sort = sort == 'desc' ? 'asc' : 'desc'
+	return sort
+}
 function change_total(){
    var total = Number($('#order_cost').val()) + Number($('#order_tip').val());
    $('#order_total').val(total);

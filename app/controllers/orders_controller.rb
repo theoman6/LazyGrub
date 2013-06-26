@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where('updated_at > ?', Time.now - 1.hour)
+    @order_index = true
   end
 
   def new

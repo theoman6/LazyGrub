@@ -23,7 +23,7 @@
                           .span6
                             = "#{item.name} $#{item.cost}"
                           .span6
-                            %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{@items ? (@items.select{|i| i[:id] == item.id}).length || 0 : 0}", :'data-cost' => "#{item.cost}"} 
+                            %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{@items ? (@items.select{|i| i[:id] == item.id}).length : 0}", :'data-cost' => "#{item.cost}"} 
         %br
         = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
         .row-fluid

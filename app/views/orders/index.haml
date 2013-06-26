@@ -1,19 +1,20 @@
-
-
 %h1 Claim an Order for Delivery
 -unless @orders.length == 0
 	%table{:id => 'orders', :class => 'display'}
 		%thead
 			%tr
-				%th
+				%th Details
 				%th.tb-r Restaurant
-				%th
+				%th Arrow
 				%th.tb-l Destination
 				%th Cost
-				%th
+				%th Cost Data
+				%th Plus
 				%th Tip
+				%th Tip Data
 				%th Rat.
 				%th Exp
+				%th Exp Data
 		%tbody
 			-@orders.each do |order|
 				.modal.hide.fade{:tabindex => '-1', :id=> "order_#{order.id}_details", :role => 'dialog', :'aria-labelledby' => "order-#{order.id}Label", :'aria-hidden' => 'true'}
@@ -29,7 +30,6 @@
 						%h5 Tip: #{order.tip}
 						%h5 Total: #{order.total}
 						%h5 Description: #{order.description}
-						%h6 Buy something!
 				%tr{:id => "table_row_#{order.id}"}
 					%th.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%th.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
@@ -37,12 +37,15 @@
 						%i.icon-arrow-right
 					%th.tb-l.toolT{:title => 'Destination'}=(order.house_dorm || order.address)
 					%th.tb-r.toolT{:title => 'Order Cost'}='$' + order.cost.to_s
+					%th=order.cost
 					%th
 						%i.icon-plus
-					%th.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + ' tip'
+					%th.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + 'tip'
+					%th=order.tip
 					%th.toolT{:title => "User's Rating"}
 						-Random.rand(5).times do 
 							%i.icon-star
 					%th.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
+					%th=order.updated_at
 -else 
 	%h2 No orders to display... #{link_to('Order food', root_path)}

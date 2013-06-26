@@ -36,7 +36,7 @@ select.time {
 }
 
 .container {
-  width: 1200px;
+  width: 900px;
 } 
 
 .footer { 
@@ -295,4 +295,30 @@ footer {
 
 #orders thead{
 	display: none;
+}
+
+.navbar-fixed-top {
+	height: 40px;
+}
+
+.under-top { 
+	margin-top: 40px;
+}
+
+.header2space{
+	height: 20px;
+	clear: both;
+}
+
+.header-select{
+	display: inline-block;
+	margin-bottom: 0px;
+}
+
+.nav-space { 
+	margin-right: 5px;
+}
+
+.room-top{
+	margin-top: 5px;
 }
