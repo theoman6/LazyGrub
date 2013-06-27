@@ -5,6 +5,7 @@
       %button{:class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} x 
     .modal-body
       =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
+        = f.error_notification
         = f.association :restaurant
         #items-list
           .accordion

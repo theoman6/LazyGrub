@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       flash[:success] = 'Order placed'
       redirect_to orders_path
     else 
-      flash[:alert] = "Order failed"
+      flash[:alert] = "Order failed: see form for details"
       render 'static_pages/home'
     end
   end

@@ -19,6 +19,19 @@ $(document).ready(function(){
 	$('.toolT').tooltip();
 	update_order_form();
 
+	$('#order-form').modal({
+	        backdrop: true,
+	        keyboard: true,
+	        show: false
+	    }).css({
+	       'width': function () { 
+	           return (($(window).width() * .9) < 700 ? ($(window).width() * .9) : 700) + 'px';  
+	       },
+
+	       'margin-left': function () { 
+	           return -($(this).width() / 2); 
+	       }
+	});
 	var table = $('#orders').dataTable({
 		'aoColumns': [
 			{'bSortable': false},
