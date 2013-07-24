@@ -35,6 +35,7 @@
 								%h5 Deliver to: #{order.house_dorm ? order.house_dorm.to_s + ' ' + order.room.to_s : order.address.to_s}
 								- phone = order.user.phone_number
 								%h5= "Phone Number: (#{phone[0,3]}) #{phone[3,3]}-#{phone[6,4]}"
+								%h5= "User Rating: #{order.user.rating}/5 stars (#{order.user.deliveries.to_i} reviews)"
 							.tab-pane{:id => "item-info-#{order.id}"}
 								-order.items.each do |item| 
 									%h6=item.name.to_s + ': $' + item.cost.to_s

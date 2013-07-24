@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :phone_number
 
   # attr_accessible :title, :body
+  def rating 
+    self.deliveries.to_i != 0 ? self.delivery_stars / self.deliveries : 0 
+  end 
 end
