@@ -22,14 +22,26 @@
 						%h3{:id => "order-#{order.id}Label"} Order Details
 						%button{:class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} x 
 					.modal-body
-						%h5 Deliver to: #{order.house_dorm ? order.house_dorm.to_s + ' ' + order.room.to_s : order.address.to_s}
-						%h5 Items: 
-						-order.items.each do |item| 
-							=item.name.to_s
-						%h5 Cost: #{order.cost}
-						%h5 Tip: #{order.tip}
-						%h5 Total: #{order.total}
-						%h5 Description: #{order.description}
+						%ul.nav.nav-tabs{:'data-tabs' => 'tabs'}
+							%li
+								%a{:'data-toggle' => 'tab', :href => "#basic-info-#{order.id}"}General
+							%li
+								%a{:'data-toggle' => 'tab', :href => "#item-info-#{order.id}"}Items
+							%li
+								%a{:'data-toggle' => 'tab', :href => "#cost-info-#{order.id}"}Cost
+						.tab-content
+							.active.tab-pane{:id => "basic-info-#{order.id}"}
+								%h5 Pick-up from: #{order.restaurant.name}
+								%h5 Deliver to: #{order.house_dorm ? order.house_dorm.to_s + ' ' + order.room.to_s : order.address.to_s}
+								- phone = order.user.phone_number
+								%h5= "Phone Number: (#{phone[0,3]}) #{phone[3,3]}-#{phone[6,4]}"
+							.tab-pane{:id => "item-info-#{order.id}"}
+								-order.items.each do |item| 
+									%h6=item.name.to_s + ': $' + item.cost.to_s
+							.tab-pane{:id => "cost-info-#{order.id}"}
+								%h5 Cost: $#{order.cost}
+								%h5 Tip: $#{order.tip}
+								%h5 Total: $#{order.total}
 				%tr{:id => "table_row_#{order.id}"}
 					%th.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%th.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
