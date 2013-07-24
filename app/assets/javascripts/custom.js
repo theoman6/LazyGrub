@@ -1,5 +1,3 @@
-var sort = 'desc';
-
 $(document).ready(function(){
 	$("#order_cost").change(change_total);
 	$("#order_tip").change(change_total);
@@ -50,16 +48,16 @@ $(document).ready(function(){
 		bJQueryUI: true
 	});
 
+	$("#datatable-search").keyup(function(){
+		table.fnFilter($(this).val());
+	});
+
 	$('#sort_by, #asc-desc').change(function() {
 		table.fnSort([[$('#sort_by').val(), $('#asc-desc').val()]]);
 	});
 });
 
 
-function sort_table(){ 
-	sort = sort == 'desc' ? 'asc' : 'desc'
-	return sort
-}
 function change_total(){
    var total = Number($('#order_cost').val()) + Number($('#order_tip').val());
    $('#order_total').val(total);
