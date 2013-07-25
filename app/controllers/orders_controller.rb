@@ -11,12 +11,23 @@ class OrdersController < ApplicationController
   
   def create
     tmp = params['order']['item_ids']
-    params['order']['item_ids'] = [] 
+    choices = [] 
     tmp.each_pair do |key, value| 
-      params['order']['item_ids'].concat([key] * value.to_i)
+      value.to_i.times do 
+        binding.pry
+        choices << {:item_id => key, :description => params['order']['item_descriptions'][key].shift[1]}
+      end
     end
+    params['order'].delete('item_descriptions')
+    params['order'].delete('item_ids')
     @order = current_user.orders.build(params['order'])
     if @order.save
+      binding.pry
+      choices.each do |row| 
+        row[:order_id] = @order.id
+        choice = Choice.new(row)
+        choice.save
+      end
       flash[:success] = 'Order placed'
       redirect_to orders_path
     else 

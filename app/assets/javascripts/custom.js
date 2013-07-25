@@ -59,6 +59,35 @@ $(document).ready(function(){
 });
 
 
+
+function update_descriptions(){ 
+	$('.item_quantities').each(function() {
+		var quantity = $(this).val(); 
+		var id = $(this).attr('id').split('_')[1];
+		var span = $('#item_' + id.toString() + '_descriptions')
+		var count = span.find('.order_item_description').length;
+		if (count < quantity) {
+			for (var i = 0; i < quantity - count; i++) {
+				var text = "<div class='control-group text optional hidden' id = 'item_" + (id).toString() + "_description_" + (count + i).toString() + "'>";
+				text += "<div class='controls'>";
+				text += "<textarea name = 'order[item_descriptions][" + id.toString() + "][" + (count + i).toString() + "]' placeholder = 'Special Instructions' class='text optional order_item_description' id='item_" + (id).toString() + "_text_" + (count + i).toString() + "' rows='2'></textarea>";
+				text += "</div></div>";
+				span.append(text)
+				$("#item_" + (id).toString() + "_description_" + (count + i).toString()).fadeIn();
+			}
+		}
+		else if (count > quantity) { 
+			for (var i = 0; i < count - quantity; i++) {
+				var last = span.children("div:last")
+				last.fadeOut(200, function(){
+					$(this).remove();
+				});
+			}
+		}
+	});
+}; 
+
+
 function change_total(){
    var total = Number($('#order_cost').val()) + Number($('#order_tip').val());
    $('#order_total').val(total);
@@ -67,6 +96,7 @@ function change_total(){
 function update_order_form(){ 
 	get_prices();
 	get_headers();
+	update_descriptions();
 };
 
 function get_headers(){ 

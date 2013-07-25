@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :claimer, class_name: "User"
   belongs_to :restaurant
-  has_and_belongs_to_many :items
+  has_many :choices
+  has_many :items, :through => :choices
   serialize :item_ids
 end

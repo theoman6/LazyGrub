@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @order = Order.new
     if user_signed_in? 
       last_order = current_user.orders.last
-      @items = !current_user.orders.all.blank? ? current_user.orders.last.items : nil
+      @items = !current_user.orders.all.blank? ? current_user.orders.last.choices : nil
       if last_order.nil?
         @order[:phone_number] = current_user.phone_number
         if  (!current_user.house_dorm.nil? && !current_user.room.nil?)

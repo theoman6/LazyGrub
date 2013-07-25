@@ -23,10 +23,24 @@
                     .accordion-inner
                       -item_list[category].each do |item|
                         .row-fluid
-                          .span6
+                          .span4
                             = "#{item.name} $#{item.cost}"
-                          .span6
-                            %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{@items ? (@items.select{|i| i[:id] == item.id}).length : 0}", :'data-cost' => "#{item.cost}"} 
+                          - if @items 
+                            - old_items = (@items.select{|i| i[:item_id] == item.id})
+                            - count = old_items.length
+                          - else 
+                            - count = 0 
+                          .span2
+                            %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{count}", :'data-cost' => "#{item.cost}"} 
+                          .span6{:id => "item_#{item.id}_descriptions"}
+                            - i = -1
+                            - if count > 0 
+                              -old_items.each do |old_item|   
+                                - i = i + 1                 
+                                .control-group.text.optional{:id => "item_#{item.id}_description_#{i}"}
+                                  .controls
+                                    %textarea.text.optional.order_item_description{:name => "order[item_descriptions][#{item.id}][#{i}]", :placeholder => "Special Instructions", :id => "item_#{item.id}_text_#{i}"}= old_item.description
+
         = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
         .row-fluid
           .span3=f.input :cost, :class => "input-small", :readonly => true
