@@ -37,8 +37,9 @@
 								%h5= "Phone Number: (#{phone[0,3]}) #{phone[3,3]}-#{phone[6,4]}"
 								%h5= "User Rating: #{order.user.rating}/5 stars (#{order.user.deliveries.to_i} reviews)"
 							.tab-pane{:id => "item-info-#{order.id}"}
-								-order.items.each do |item| 
-									%h6=item.name.to_s + ': $' + item.cost.to_s
+								-order.choices.each do |choice| 
+									- i = choice.item
+									%h6=i.name.to_s + ': $' + i.cost.to_s + ', ' + choice.description
 							.tab-pane{:id => "cost-info-#{order.id}"}
 								%h5 Cost: $#{order.cost}
 								%h5 Tip: $#{order.tip}
