@@ -1,20 +1,19 @@
 $(document).ready(function(){
 	$("#order_cost").change(change_total);
+
 	$("#order_tip").change(change_total);
+
 	$("#order_restaurant_id").change(function() {
 		var id = (this).options[(this).selectedIndex].value;
 		$.getScript('/restaurants/' + id + '/items/list');
 	});
+
 	$(".item_quantities").change(function() {
 		update_order_form();
 	});
-	$(".accordion").accordion({
-		heightStyle: 'content',
-		collapsible: true,
-		autoHeight: false,
-		active :false
-	});
+
 	$('.toolT').tooltip();
+
 	update_order_form();
 
 	$('#order-form').modal({
@@ -30,6 +29,7 @@ $(document).ready(function(){
 	           return -($(this).width() / 2); 
 	       }
 	});
+
 	var table = $('#orders').dataTable({
 		'aoColumns': [
 			{'bSortable': false},
@@ -69,13 +69,13 @@ function update_order_form(){
 };
 
 function get_headers(){ 
-	$('.tab-accordion').each(function() {
+	$('.accordion-body').each(function() {
 		var total = 0.0;
 		$(this).find('input').each(function(){
 			total += parseInt($(this).val());
 		});
-		h = $(this).prev('h3');
-		h.text((h.attr('title') + ' (' + total + ')').toString());
+		header = $(this).prev().find('a').first();
+		header.text((header.data('atag') + ' (' + total + ')').toString());
 	});
 };
 

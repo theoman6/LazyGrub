@@ -8,24 +8,25 @@
         = f.error_notification
         = f.association :restaurant
         #items-list
-          .accordion
+          .accordion#restaurant-accordion
             - item_list = {}
             - if @order.restaurant
               - @order.restaurant.categories.each do |category|
                 - item_list[category[:name]] = category.items
             - item_list.each_key do |category|
               -unless item_list[category].empty?
-                %h3.header-accordion{:title => "#{category}"}= category
-                .tab-accordion
-                  -item_list[category].each do |item|
-                    .control-group.integer.order_items_quantities
-                      .controls
+                .accordion-group
+                  .accordion-heading
+                    %a.accordion-toggle{:"data-atag" => category, :"data-toggle" => 'collapse', :"data-parent" => '#restaurant-accordion', :href => "##{category}"}=category
+
+                  .accordion-body.collapse{:id => "#{category}"}
+                    .accordion-inner
+                      -item_list[category].each do |item|
                         .row-fluid
                           .span6
                             = "#{item.name} $#{item.cost}"
                           .span6
                             %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{@items ? (@items.select{|i| i[:id] == item.id}).length : 0}", :'data-cost' => "#{item.cost}"} 
-        %br
         = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
         .row-fluid
           .span3=f.input :cost, :class => "input-small", :readonly => true
