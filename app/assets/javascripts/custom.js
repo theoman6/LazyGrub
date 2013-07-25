@@ -14,8 +14,6 @@ $(document).ready(function(){
 
 	$('.toolT').tooltip();
 
-	update_order_form();
-
 	$('#order-form').modal({
 	        backdrop: true,
 	        keyboard: true,
@@ -55,6 +53,9 @@ $(document).ready(function(){
 	$('#sort_by, #asc-desc').change(function() {
 		table.fnSort([[$('#sort_by').val(), $('#asc-desc').val()]]);
 	});
+	
+	update_order_form();
+
 });
 
 
