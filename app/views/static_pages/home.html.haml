@@ -50,7 +50,11 @@
           .span3= f.input :total, :class => "input-small", :readonly => true
 
         #house.row-fluid
-          .span8= f.input :house_dorm, collection: HOUSES, label: 'House/Hall'
+          - if @order.house_dorm
+            - pp @order.house_dorm
+            .span8= f.input :house_dorm, collection: HOUSES, label: 'House/Hall', :value => @order.house_dorm
+          -else 
+            .span8= f.input :house_dorm, collection: HOUSES, label: 'House/Hall'
           .span4= f.input :room
         #address
           = f.input :address

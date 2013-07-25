@@ -7,15 +7,12 @@ class StaticPagesController < ApplicationController
       @items = !current_user.orders.all.blank? ? current_user.orders.last.choices : nil
       if last_order.nil?
         @order[:phone_number] = current_user.phone_number
-        if  (!current_user.house_dorm.nil? && !current_user.room.nil?)
-          @order[:house_dorm] = current_user.house_dorm
-          @order[:room] = current_user.room
-        else
-          @order[:address] = current_user.address
-          @order[:city] = current_user.city
-          @order[:state] = current_user.state
-          @order[:zip] = current_user.zip
-        end
+        @order[:house_dorm] = current_user.house_dorm
+        @order[:room] = current_user.room
+        @order[:address] = current_user.address
+        @order[:city] = current_user.city
+        @order[:state] = current_user.state
+        @order[:zip] = current_user.zipcode
       else
         @order = last_order
         @order[:id] = nil

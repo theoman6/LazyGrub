@@ -23,7 +23,7 @@
       <div id='optionals'>
         <div class='row-fluid'>
           <div class='span8'>
-            <%= f.input :house_dorm %>
+            <%= f.input :house_dorm, collection: HOUSES, label: 'House/Hall'%>
           </div> 
           <div class='span4'>
             <%= f.input :room %>
