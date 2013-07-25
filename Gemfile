@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
+ruby '1.9.3'
 
 
 
