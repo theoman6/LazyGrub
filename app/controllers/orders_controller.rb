@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
     choices = [] 
     tmp.each_pair do |key, value| 
       value.to_i.times do 
-        binding.pry
         choices << {:item_id => key, :description => params['order']['item_descriptions'][key].shift[1]}
       end
     end
@@ -22,7 +21,6 @@ class OrdersController < ApplicationController
     params['order'].delete('item_ids')
     @order = current_user.orders.build(params['order'])
     if @order.save
-      binding.pry
       choices.each do |row| 
         row[:order_id] = @order.id
         choice = Choice.new(row)
