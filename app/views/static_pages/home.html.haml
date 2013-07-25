@@ -19,7 +19,7 @@
                   .accordion-heading
                     %a.accordion-toggle{:"data-atag" => category, :"data-toggle" => 'collapse', :"data-parent" => '#restaurant-accordion', :href => "##{category}"}=category
 
-                  .accordion-body.collapse{:id => "#{category}"}
+                  .accordion-body.collapse.in{:id => "#{category}"}
                     .accordion-inner
                       -item_list[category].each do |item|
                         .row-fluid
