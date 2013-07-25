@@ -62,4 +62,4 @@
 					%th.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 					%th=order.updated_at
 -else 
-	%h2 No orders to display... #{link_to('Order food', root_path)}
+	%h2 No orders to display... #{link_to('Order food', root_path + '#order-form')}

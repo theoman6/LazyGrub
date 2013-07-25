@@ -14,10 +14,12 @@ $(document).ready(function(){
 
 	$('.toolT').tooltip();
 
+	var modal_open = document.URL.slice(-11) == '#order-form'
+
 	$('#order-form').modal({
 	        backdrop: true,
 	        keyboard: true,
-	        show: false
+	        show: modal_open
 	    }).css({
 	       'width': function () { 
 	           return (($(window).width() * .9) < 700 ? ($(window).width() * .9) : 700) + 'px';  
