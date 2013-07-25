@@ -25,10 +25,12 @@ module ApplicationHelper
 						i << "<div class = 'accordion-inner'>"
             item_list[category].each do |item|
               i << "<div class = 'row-fluid'> "
-              i << "<div class ='span6'>" + item.name.to_s + ' $' + item.cost.to_s + "</div>"
-              i << '<div class ="span6">'
+              i << "<div class ='span4'>" + item.name.to_s + ' $' + item.cost.to_s + "</div>"
+              i << '<div class ="span2">'
               i << '<input min = 0 type = "number" id = "item_' + item.id.to_s + '_quantity"' + 'class = "numeric integer item_quantities" name = "order[item_ids][' + item.id.to_s + ']" value = "0" data-cost = "' + item.cost.to_s + '"></input>'
 							i << "</div>"
+              i << '<div class = "span6" id = "item_' + item.id.to_s + '_descriptions">'
+              i << '</div>'
 							i << "</div>"
 						end
 						i << '</div>'
