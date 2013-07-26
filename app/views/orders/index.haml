@@ -39,7 +39,7 @@
 							.tab-pane{:id => "item-info-#{order.id}"}
 								-order.choices.each do |choice| 
 									- i = choice.item
-									%h6=i.name.to_s + ': $' + i.cost.to_s + ', ' + choice.description
+									%h6="#{i.name.to_s}: $#{i.cost.to_s}#{', ' + choice.description if !choice.description.blank?}"
 							.tab-pane{:id => "cost-info-#{order.id}"}
 								%h5 Cost: $#{order.cost}
 								%h5 Tip: $#{order.tip}
