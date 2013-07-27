@@ -44,8 +44,12 @@ select.time {
 }
 
 .container {
-  width: 1000px;
+  width: 900px;
 } 
+
+.bigger-container{
+	width: 1000px !important;
+}
 
 .footer { 
   clear: both;
