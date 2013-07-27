@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where('updated_at > ?', 1.month.ago)
+    @current_count = @orders.count{|order| order.updated_at + 1.hour > Time.now}
     @preset = params[:preset] || 'index'
     @order_index = true
   end

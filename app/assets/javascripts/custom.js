@@ -42,6 +42,9 @@ $(document).ready(function(){
 	});
 
 	table = $('#orders').dataTable({
+  	"oLanguage": {
+	  		"sZeroRecords": "<h2>Sorry, there are no such orders. <a href = '" + document.URL.slice(0, -7) + "#order-form'>Order Food!</a></h2>"
+	  	},
 		'aoColumns': [
 			{'bVisible': false},
 			null,
@@ -58,7 +61,7 @@ $(document).ready(function(){
 			{'bVisible': false}
 
 		],
-		bJQueryUI: true
+		bJQueryUI: true,
 	});
 
 	button_filter();
