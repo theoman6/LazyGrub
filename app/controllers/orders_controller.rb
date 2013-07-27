@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = Order.where('updated_at > ?', Time.now - 1.hour)
+    @orders = Order.where('updated_at > ?', 1.month.ago)
+    @preset = params[:preset] || 'index'
     @order_index = true
   end
 
@@ -35,5 +36,13 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def claim
+    order = Order.find(params[:id])
+    order.claimer = current_user unless order.claimer
+    order.save
+    @preset = 'claimed'
+    redirect_to orders_path({:preset => 'claimed'})
   end
 end

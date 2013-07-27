@@ -45,6 +45,9 @@
 								%h5 Cost: $#{order.cost}
 								%h5 Tip: $#{order.tip}
 								%h5 Total: $#{order.total}
+					.modal-footer
+						%button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
+						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-primary"
 				%tr.order-row{:id => "table_row_#{order.id}"}
 					%td.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%td.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
@@ -62,6 +65,10 @@
 							%i.icon-star
 					%td.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 					%td=order.updated_at
-					%td= order.user == current_user ? "My All Orders" : "All Orders"
+					%td
+						= " #{'Current Orders'.hash.to_s}" if (order.updated_at + 1.hour) > Time.now
+						= " #{'Unclaimed Orders'.hash.to_s}" if !order.claimer
+						= " #{'My Orders'.hash.to_s}" if current_user == order.user
+						= " #{'My Deliveries'.hash.to_s}" if order.claimer == current_user
 -else 
 	%h2 No orders to display... #{link_to('Order food', root_path + '#order-form')}

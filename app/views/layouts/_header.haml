@@ -36,10 +36,11 @@
               %option{:value => 'desc'}Desc
           %li.nav-space Show:
           %li.nav-space 
-            .btn-group{:'data-toggle' => 'buttons-radio'}
-              %button.btn.filter-nav.active{:type => 'button'} All Orders
-              %button.btn.filter-nav{:type => 'button'} My Orders
-              %button.btn.filter-nav{:type => 'button'} Claimed Orders 
+            .btn-group{:'data-toggle' => 'buttons-checkbox'}
+              %button.btn.filter-nav.active{:type => 'button', :value => 'Current Orders'.hash.to_s} Current Orders
+              %button.btn.filter-nav.active{:type => 'button', :value => 'Unclaimed Orders'.hash.to_s} Unclaimed Orders
+              %button.btn.filter-nav{:type => 'button', :value => 'My Orders'.hash.to_s} My Orders
+              %button.btn.filter-nav{:type => 'button', :value => 'My Deliveries'.hash.to_s} My Deliveries
         %ul.nav.pull-right
           %li.nav-space
             %input{:type => 'text', :class => 'input-medium search-query', :id => "datatable-search"}

@@ -3,7 +3,6 @@ $(document).ready(function(){
 
 	$(".order-row").click(function() {
 		var id = $(this).attr('id').split('_')[2];
-		console.log("#order_" + id.toString + "_details");
 		$("#order_" + id.toString() + "_details").modal('show');
 	});
 
@@ -19,8 +18,9 @@ $(document).ready(function(){
 	});
 
 	$(".filter-nav").click(function() { 
-		var selected = $(this).text();
-		table.fnFilter(selected, 12);
+		$(this).button("toggle");
+		button_filter();
+		$(this).button("toggle");
 	});
 
 	$('.toolT').tooltip();
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	       }
 	});
 
-	var table = $('#orders').dataTable({
+	table = $('#orders').dataTable({
 		'aoColumns': [
 			{'bVisible': false},
 			null,
@@ -60,6 +60,9 @@ $(document).ready(function(){
 		],
 		bJQueryUI: true
 	});
+
+	button_filter();
+
 
 	$("#datatable-search").keyup(function(){
 		table.fnFilter($(this).val());
@@ -112,6 +115,14 @@ function update_order_form(){
 	get_prices();
 	get_headers();
 	update_descriptions();
+};
+
+function button_filter(){
+	var query = ''
+	$(".btn..filter-nav.active").each(function() {
+		query = query + ' ' + $(this).val();
+	});
+	table.fnFilter(query, 12);
 };
 
 function get_headers(){ 

@@ -7,7 +7,11 @@ Snackage::Application.routes.draw do
   match '/deliveries', to: 'static_pages#deliveries'
   get '/static_pages/prices'
 
-  resources :orders 
+  resources :orders do 
+    member do
+      get :claim
+    end
+  end
 
   resources :restaurants do 
     resources :items do 
