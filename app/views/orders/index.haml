@@ -15,6 +15,7 @@
 				%th Rat.
 				%th Exp
 				%th Exp Data
+				%th User
 		%tbody
 			-@orders.each do |order|
 				.modal.hide.fade{:tabindex => '-1', :id=> "order_#{order.id}_details", :role => 'dialog', :'aria-labelledby' => "order-#{order.id}Label", :'aria-hidden' => 'true'}
@@ -61,5 +62,6 @@
 							%i.icon-star
 					%th.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 					%th=order.updated_at
+					%th= order.user == current_user ? "My All Orders" : "All Orders"
 -else 
 	%h2 No orders to display... #{link_to('Order food', root_path + '#order-form')}

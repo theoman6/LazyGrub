@@ -12,6 +12,11 @@ $(document).ready(function(){
 		update_order_form();
 	});
 
+	$(".filter-nav").click(function() { 
+		var selected = $(this).text();
+		table.fnFilter(selected, 12);
+	});
+
 	$('.toolT').tooltip();
 
 	var modal_open = document.URL.slice(-11) == '#order-form'
@@ -43,7 +48,9 @@ $(document).ready(function(){
 			{'bVisible': false},
 			null,
 			null,
+			{'bVisible': false},
 			{'bVisible': false}
+
 		],
 		bJQueryUI: true
 	});

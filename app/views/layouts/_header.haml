@@ -34,6 +34,12 @@
             %select.header-select#asc-desc
               %option{:value => 'asc'}Asc
               %option{:value => 'desc'}Desc
+          %li.nav-space Show:
+          %li.nav-space 
+            .btn-group{:'data-toggle' => 'buttons-radio'}
+              %button.btn.filter-nav.active{:type => 'button'} All Orders
+              %button.btn.filter-nav{:type => 'button'} My Orders
+              %button.btn.filter-nav{:type => 'button'} Claimed Orders 
         %ul.nav.pull-right
           %li.nav-space
             %input{:type => 'text', :class => 'input-medium search-query', :id => "datatable-search"}
