@@ -48,8 +48,8 @@
 								%h5 Tip: $#{order.tip}
 								%h5 Total: $#{order.total}
 					.modal-footer
-						%button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
-						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-primary"
+						%button{:class => 'btn btn-inverse', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
+						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-success"
 				%tr.btn.order-row{:id => "table_row_#{order.id}", :class => "btn-#{even_odd.even? ? 'success order-even' : 'inverse order-odd'}"}
 					%td.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%td.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
