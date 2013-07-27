@@ -45,23 +45,23 @@
 								%h5 Cost: $#{order.cost}
 								%h5 Tip: $#{order.tip}
 								%h5 Total: $#{order.total}
-				%tr{:id => "table_row_#{order.id}"}
-					%th.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
-					%th.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
-					%th
+				%tr.order-row{:id => "table_row_#{order.id}"}
+					%td.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
+					%td.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
+					%td
 						%i.icon-arrow-right
-					%th.tb-l.toolT{:title => 'Destination'}=(order.house_dorm || order.address)
-					%th.tb-r.toolT{:title => 'Order Cost'}='$' + order.cost.to_s
-					%th=order.cost
-					%th
+					%td.tb-l.toolT{:title => 'Destination'}=(order.house_dorm || order.address)
+					%td.tb-r.toolT{:title => 'Order Cost'}='$' + order.cost.to_s
+					%td=order.cost
+					%td
 						%i.icon-plus
-					%th.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + 'tip'
-					%th=order.tip
-					%th.toolT{:title => "User's Rating"}
+					%td.tb-l.toolT{:title => 'Offered Tip'}='$' + order.tip.to_s + 'tip'
+					%td=order.tip
+					%td.toolT{:title => "User's Rating"}
 						-Random.rand(5).times do 
 							%i.icon-star
-					%th.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
-					%th=order.updated_at
-					%th= order.user == current_user ? "My All Orders" : "All Orders"
+					%td.toolT{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
+					%td=order.updated_at
+					%td= order.user == current_user ? "My All Orders" : "All Orders"
 -else 
 	%h2 No orders to display... #{link_to('Order food', root_path + '#order-form')}

@@ -1,6 +1,12 @@
 $(document).ready(function(){
 	$("#order_cost").change(change_total);
 
+	$(".order-row").click(function() {
+		var id = $(this).attr('id').split('_')[2];
+		console.log("#order_" + id.toString + "_details");
+		$("#order_" + id.toString() + "_details").modal('show');
+	});
+
 	$("#order_tip").change(change_total);
 
 	$("#order_restaurant_id").change(function() {
@@ -37,7 +43,7 @@ $(document).ready(function(){
 
 	var table = $('#orders').dataTable({
 		'aoColumns': [
-			{'bSortable': false},
+			{'bVisible': false},
 			null,
 			{'bSortable': false},
 			null,
