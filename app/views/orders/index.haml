@@ -1,3 +1,4 @@
+-provide(:title, "Orders")
 -unless @orders.length == 0
 	%table{:id => 'orders', :class => 'display'}
 		%thead
@@ -14,7 +15,7 @@
 				%th Rat.
 				%th Exp
 				%th Exp Data
-				%th User
+				%th User Info
 		%tbody
 			-@orders.each do |order|
 				.modal.hide.fade{:tabindex => '-1', :id=> "order_#{order.id}_details", :role => 'dialog', :'aria-labelledby' => "order-#{order.id}Label", :'aria-hidden' => 'true'}
@@ -47,7 +48,7 @@
 					.modal-footer
 						%button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
 						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-primary"
-				%tr.order-row{:id => "table_row_#{order.id}"}
+				%tr.btn.btn-success.order-row{:id => "table_row_#{order.id}"}
 					%td.toolT{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%td.tb-r.toolT{:title => 'Origin'}=order.restaurant.name
 					%td

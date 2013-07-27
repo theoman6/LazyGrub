@@ -43,6 +43,19 @@ select.time {
   border-radius: 8px;
 }
 
+.order-row{
+	background-color: #51a351 !important;
+}
+
+
+.order-row {
+	@extend %tr;
+	display: table-row !important;
+	height: 100%;
+	width: 100%;
+	line-height: 30px;
+	font-size: 1.5em;
+}
 .container {
   width: 900px;
 } 
@@ -230,11 +243,11 @@ p {
 }
 
 .tb-r { 
-	text-align: right;
+	text-align: right !important;
 }
 
 .tb-l { 
-	text-align: left;
+	text-align: left !important;
 }
 
 .tb-m {

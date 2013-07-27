@@ -64,9 +64,6 @@ $(document).ready(function(){
 		bJQueryUI: true,
 	});
 
-	button_filter();
-
-
 	$("#datatable-search").keyup(function(){
 		table.fnFilter($(this).val());
 	});
@@ -76,6 +73,8 @@ $(document).ready(function(){
 	});
 	
 	update_order_form();
+	button_filter();
+
 
 });
 
