@@ -43,13 +43,16 @@ select.time {
   border-radius: 8px;
 }
 
-.order-row{
+.order-even{
 	background-color: #51a351 !important;
+}
+
+.order-odd{
+	background-color: #222222 !important;
 }
 
 
 .order-row {
-	@extend %tr;
 	display: table-row !important;
 	height: 100%;
 	width: 100%;
