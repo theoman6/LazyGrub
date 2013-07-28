@@ -65,6 +65,20 @@ tr.odd{
   width: 900px;
 } 
 
+.left-bar{
+	position: fixed;
+	left: 20px;
+	top: 100px;
+
+}
+
+.right-bar{
+	position: fixed;
+	right: 20px;
+	top: 100px;
+
+}
+
 .bigger-container{
 	width: 1000px !important;
 }

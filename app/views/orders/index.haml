@@ -1,15 +1,42 @@
 -provide(:title, "Orders")
+.left-bar
+	.btn-group.btn-group-vertical{:'data-toggle' => 'buttons-checkbox'}
+		%h5 Show Only:
+		%button.btn.btn-inverse.filter-nav.active{:type => 'button', :value => 'Current Orders'.hash.to_s} Current Orders
+		%button.btn.btn-inverse.filter-nav.active{:type => 'button', :value => 'Unclaimed Orders'.hash.to_s} Unclaimed Orders
+		%button.btn.btn-inverse.filter-nav{:type => 'button', :value => 'My Orders'.hash.to_s} My Orders
+		%button.btn.btn-inverse.filter-nav{:type => 'button', :value => 'My Deliveries'.hash.to_s} My Deliveries
+.right-bar
+	.search.clearfix
+		%h5 Search Orders: 
+		%input{:type => 'text', :class => 'input-medium search-query', :id => "datatable-search"}
+	.sort.clearfix
+		%h5 Sort By:
+		.row-fluid
+			.span8
+				%select.header-select#sort_by
+					%option{:value => '1'}Restaurant
+					%option{:value => '3'}Destination
+					%option{:value => '5'}Cost
+					%option{:value => '8'}Tip
+					%option{:value => '9'}Rating
+					%option{:value => '11'}Expiration
+			.span4
+				%select.header-select#asc-desc
+					%option{:value => 'asc'}Asc
+					%option{:value => 'desc'}Desc
+
 -unless @orders.length == 0
 	%table{:id => 'orders', :class => 'display'}
 		%thead
 			%tr
 				%th Details
 				%th.tb-r Restaurant
-				%th Arrow
+				%th 
 				%th.tb-l Destination
 				%th Cost
 				%th Cost Data
-				%th Plus
+				%th 
 				%th Tip
 				%th Tip Data
 				%th Rat.

@@ -62,6 +62,10 @@ $(document).ready(function(){
 
 		],
 		bJQueryUI: true,
+		'iDisplayLength': 10,
+		"bScrollInfinite": true,
+		"bScrollCollapse": true,
+		"sScrollY": "400px"
 	});
 
 	$("#datatable-search").keyup(function(){
