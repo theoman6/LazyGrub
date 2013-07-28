@@ -87,9 +87,7 @@
 						%i.icon-plus.icon-white
 					%td.tb-l{:title => 'Offered Tip'}='$' + order.tip.to_s + 'tip'
 					%td=order.tip
-					%td{:title => "User's Rating"}
-						-Random.rand(5).times do 
-							%i.icon-star.icon-white
+					%td{:title => "User's Rating"}= "#{order.user.rating.round(2)}/5" 
 					%td{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 					%td=order.updated_at
 					%td
