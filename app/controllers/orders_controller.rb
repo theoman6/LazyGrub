@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!
-
   def index
     @orders = Order.where('updated_at > ?', 1.month.ago)
     @current_count = @orders.count{|order| order.updated_at + 1.hour > Time.now}
