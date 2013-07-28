@@ -43,11 +43,11 @@ select.time {
   border-radius: 8px;
 }
 
-.order-even{
+tr.even{
 	background-color: #51a351 !important;
 }
 
-.order-odd{
+tr.odd{
 	background-color: #222222 !important;
 }
 
@@ -56,8 +56,10 @@ select.time {
 	display: table-row !important;
 	height: 100%;
 	width: 100%;
-	line-height: 30px;
+	line-height: 40px;
 	font-size: 1.5em;
+	background-image: none !important;
+  color: white;	
 }
 .container {
   width: 900px;
