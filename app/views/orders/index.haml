@@ -19,7 +19,7 @@
 					%option{:value => '3'}Destination
 					%option{:value => '5'}Cost
 					%option{:value => '8'}Tip
-					%option{:value => '9'}Rating
+					%option{:value => '9'}User Rating
 					%option{:value => '11'}Expiration
 			.span4
 				%select.header-select#asc-desc
@@ -31,18 +31,18 @@
 		%thead
 			%tr
 				%th Details
-				%th.tb-r Restaurant
-				%th 
-				%th.tb-l Destination
-				%th Cost
-				%th Cost Data
-				%th 
-				%th Tip
-				%th Tip Data
-				%th Rat.
-				%th Exp
-				%th Exp Data
-				%th User Info
+				%th.tb-r.lazy-header Restaurant
+				%th.lazy-header 
+				%th.tb-l.lazy-header Destination
+				%th.lazy-header Cost
+				%th.lazy-header Cost Data
+				%th.lazy-header 
+				%th.lazy-header Tip
+				%th.lazy-header Tip Data
+				%th.lazy-header Rat.
+				%th.lazy-header Exp
+				%th.lazy-header Exp Data
+				%th.lazy-header User Info
 		%tbody
 			-@orders.each do |order|
 				.modal.hide.fade{:tabindex => '-1', :id=> "order_#{order.id}_details", :role => 'dialog', :'aria-labelledby' => "order-#{order.id}Label", :'aria-hidden' => 'true'}
@@ -75,7 +75,7 @@
 					.modal-footer
 						%button{:class => 'btn btn-inverse', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
 						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-success"
-				%tr.btn.order-row{:id => "table_row_#{order.id}"}
+				%tr.btn.order-row.border-bottom{:id => "table_row_#{order.id}"}
 					%td{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%td.tb-r{:title => 'Origin'}=order.restaurant.name
 					%td

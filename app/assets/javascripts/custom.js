@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 	table = $('#orders').dataTable({
   	"oLanguage": {
-	  		"sZeroRecords": "<h2>Sorry, there are no such orders. <a href = '" + document.URL.slice(0, -7) + "#order-form'>Order Food!</a></h2>"
+	  		"sZeroRecords": "<h2>Sorry, there are no such orders. <a class = 'success' href = '" + document.URL.slice(0, -7) + "#order-form'>Order Food!</a></h2>"
 	  	},
 		'aoColumns': [
 			{'bVisible': false},
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		'iDisplayLength': 10,
 		"bScrollInfinite": true,
 		"bScrollCollapse": true,
-		"sScrollY": "400px"
+		"sScrollY": "1000px"
 	});
 
 	$("#datatable-search").keyup(function(){

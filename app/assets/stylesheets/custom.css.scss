@@ -4,6 +4,10 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box
 }
+
+$main-color: #51a351;
+$secondary-color: #222222;
+
 select.time { 
   width: 40%;
 }
@@ -43,34 +47,67 @@ select.time {
   border-radius: 8px;
 }
 
+.success{
+	color: $main-color !important;
+}
+
+.lazy-header{
+	color: $main-color !important;
+	background-color: $secondary-color !important;
+	background: none;
+	border: 0px;
+	height: 50px;
+}
+
+td{
+	overflow: hidden;
+}
 tr.even{
-	background-color: #51a351 !important;
+	background-color: $main-color !important;
 }
 
 tr.odd{
-	background-color: #222222 !important;
+	background-color: $secondary-color !important;
+}
+
+tr.odd:hover{
+	color: $main-color !important;
 }
 
 tr.odd td.sorting_1{
-	background-color: #222222 !important;
+	background-color: $secondary-color !important;
 }
 
 tr.even td.sorting_1{
-	background-color: #51a351 !important;
+	background-color: $main-color !important;
 }
 
+tr td:first-child {
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+
+}
+
+tr td:last-child {
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+}
 
 .order-row {
 	display: table-row !important;
-	height: 100%;
 	width: 100%;
-	line-height: 40px;
+	height: 100px;
 	font-size: 1.5em;
 	background-image: none !important;
   color: white;	
 }
+
 .container {
-  width: 900px;
+  width: 800px;
 } 
 
 .left-bar{
@@ -78,6 +115,11 @@ tr.even td.sorting_1{
 	left: 20px;
 	top: 100px;
 
+}
+
+tr.border-bottom td {
+  border-bottom:4pt solid white;
+  border-top:4pt solid white;
 }
 
 .right-bar{
