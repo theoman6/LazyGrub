@@ -54,7 +54,8 @@ class OrdersController < ApplicationController
       end
       redirect_to orders_path
     else 
-      flash[:alert] "Someone has already claimed this order. It can no longer be edited"
+      flash[:alert] = "Someone has already claimed this order. It can no longer be edited"
+      redirect_to orders_path
     end
   end
 
