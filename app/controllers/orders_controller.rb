@@ -38,20 +38,24 @@ class OrdersController < ApplicationController
     descs = params['order'].delete('item_descriptions')
     ids = params['order'].delete('item_ids')
     order = Order.find(params[:id])
-    order.update_attributes(params['order'])
-    order.choices.each{|choice| choice.destroy}
-    choices = [] 
-    ids.each_pair do |key, value| 
-      value.to_i.times do 
-        choices << {:item_id => key, :description => descs[key].shift[1]}
+    if !Order.claimer
+      order.update_attributes(params['order'])
+      order.choices.each{|choice| choice.destroy}
+      choices = [] 
+      ids.each_pair do |key, value| 
+        value.to_i.times do 
+          choices << {:item_id => key, :description => descs[key].shift[1]}
+        end
       end
+      choices.each do |row| 
+          row[:order_id] = order.id
+          choice = Choice.new(row)
+          choice.save
+      end
+      redirect_to orders_path
+    else 
+      flash[:alert] "Someone has already claimed this order. It can no longer be edited"
     end
-    choices.each do |row| 
-        row[:order_id] = order.id
-        choice = Choice.new(row)
-        choice.save
-    end
-    redirect_to orders_path
   end
 
 
