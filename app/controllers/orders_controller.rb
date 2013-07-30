@@ -34,7 +34,31 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    descs = params['order'].delete('item_descriptions')
+    ids = params['order'].delete('item_ids')
+    order = Order.find(params[:id])
+    order.update_attributes(params['order'])
+    order.choices.each{|choice| choice.destroy}
+    choices = [] 
+    ids.each_pair do |key, value| 
+      value.to_i.times do 
+        choices << {:item_id => key, :description => descs[key].shift[1]}
+      end
+    end
+    choices.each do |row| 
+        row[:order_id] = order.id
+        choice = Choice.new(row)
+        choice.save
+    end
+    redirect_to orders_path
+  end
+
+
   def destroy
+    Order.find(params[:id]).destroy
+    flash[:success] = 'Order Cancelled'
+    redirect_to root_path
   end
 
   def claim
@@ -43,5 +67,17 @@ class OrdersController < ApplicationController
     order.save
     @preset = 'claimed'
     redirect_to orders_path({:preset => 'claimed'})
+  end
+
+  def unclaim
+    order = Order.find(params[:id])
+    order.claimer = nil 
+    order.save
+    redirect_to orders_path
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+    @items = @order.choices
   end
 end

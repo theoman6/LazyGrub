@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   def rating 
     self.deliveries.to_i != 0 ? self.delivery_stars / self.deliveries : 0 
   end 
+
+  def authenticate 
+    self[:confirmed_at] = Time.now
+    self.save
+  end
 end

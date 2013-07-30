@@ -1,10 +1,10 @@
 .container
   #order-form.modal.hide.fade{:tabindex => '-1', :role => 'dialog', :'aria-labelledby' => 'order-formLabel', :'aria-hidden' => 'true'}
-    .modal-header
-      %h3.order-formLabel Place an order
-      %button{:class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} x 
-    .modal-body
-      =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
+    =simple_form_for @order, :html => {:method => :post}, :url => url_for(:action => 'create', :controller => 'orders') do |f|
+      .modal-header
+        %h3.order-formLabel Place an order
+        %button{:class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} x 
+      .modal-body
         = f.error_notification
         = f.association :restaurant
         #items-list
@@ -65,9 +65,9 @@
         <br><br>
         = f.input :phone_number
         = f.hidden_field :payment_type, value: 'cash'
-        .modal-footer
-          %button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
-          = f.submit value: 'Place Order', class: "btn btn-primary"
+      .modal-footer
+        %button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
+        =f.submit value: 'Place Order', class: "btn btn-primary"
   .home_rest
     %h1=link_to "Hungry?", '#order-form', :role => 'button', :class => 'btn btn-xlarge btn-block btn-inverse', :'data-toggle' => 'modal'
     %h1=link_to "No, but I'll make deliveries", orders_path, class: "btn btn-xlarge btn-block btn-success"

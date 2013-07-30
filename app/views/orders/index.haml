@@ -74,7 +74,14 @@
 								%h5 Total: $#{order.total}
 					.modal-footer
 						%button{:class => 'btn btn-inverse', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
-						=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-success"
+						- if order.claimer && order.claimer == current_user
+							=link_to 'Unclaim Order', unclaim_order_path(order.id), :class => "btn btn-danger"
+						- elsif order.claimer
+						- elsif order.user == current_user
+							=link_to "Revise/Cancel Order", edit_order_path(order.id), :class => "btn btn-danger"
+						- else
+							=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-success"
+
 				%tr.btn.order-row.border-bottom{:id => "table_row_#{order.id}"}
 					%td{:title => 'Claim Order'}=link_to "Details", "#order_#{order.id}_details", :role => 'button', :class => 'btn btn-block btn-success', :'data-toggle' => 'modal' 
 					%td.tb-r{:title => 'Origin'}=order.restaurant.name

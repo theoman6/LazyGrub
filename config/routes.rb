@@ -9,7 +9,7 @@ Snackage::Application.routes.draw do
 
   resources :orders do 
     member do
-      get :claim
+      get :claim, :unclaim
     end
   end
 

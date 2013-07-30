@@ -1,0 +1,63 @@
+=simple_form_for @order do |f|
+  = f.error_notification
+  = f.association :restaurant
+  #items-list
+    .accordion#restaurant-accordion
+      - item_list = {}
+      - if @order.restaurant
+        - @order.restaurant.categories.each do |category|
+          - item_list[category[:name]] = category.items
+      - item_list.each_key do |category|
+        -unless item_list[category].empty?
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{:"data-atag" => category, :"data-toggle" => 'collapse', :"data-parent" => '#restaurant-accordion', :href => "##{category}"}=category
+
+            .accordion-body.collapse{:id => "#{category}"}
+              .accordion-inner
+                -item_list[category].each do |item|
+                  .row-fluid
+                    .span4
+                      = "#{item.name} $#{item.cost}"
+                    - if @items 
+                      - old_items = (@items.select{|i| i[:item_id] == item.id})
+                      - count = old_items.length
+                    - else 
+                      - count = 0 
+                    .span2
+                      %input{:type => 'number', :min => 0, :id => "item_#{item.id}_quantity", :class => "numeric integer item_quantities", :name => "order[item_ids][#{item.id}]", :value => "#{count}", :'data-cost' => "#{item.cost}"} 
+                    .span6{:id => "item_#{item.id}_descriptions"}
+                      - i = -1
+                      - if count > 0 
+                        -old_items.each do |old_item|   
+                          - i = i + 1                 
+                          .control-group.text.optional{:id => "item_#{item.id}_description_#{i}"}
+                            .controls
+                              %textarea.text.optional.order_item_description{:name => "order[item_descriptions][#{item.id}][#{i}]", :placeholder => "Special Instructions", :id => "item_#{item.id}_text_#{i}"}= old_item.description
+
+  = f.input :description, as: :text, :input_html => { :cols => 25, :rows => 5}, label: 'Special Instructions'
+  .row-fluid
+    .span3=f.input :cost, :class => "input-small", :readonly => true
+    .span1 +
+    .span3= f.input :tip, :class => "input-small" 
+    .span1= '='
+    .span3= f.input :total, :class => "input-small", :readonly => true
+
+  #house.row-fluid
+    - if @order.house_dorm
+      .span8= f.input :house_dorm, collection: HOUSES, label: 'House/Hall', :value => @order.house_dorm
+    -else 
+      .span8= f.input :house_dorm, collection: HOUSES, label: 'House/Hall'
+    .span4= f.input :room
+  #address
+    = f.input :address
+    .row-fluid
+      .span4= f.input :city
+      .span4= f.input :state
+      .span4= f.input :zip
+  = link_to_function "Toggle Location Type", "$('#house').toggle();$('#address').toggle()"
+  <br><br>
+  = f.input :phone_number
+  = f.hidden_field :payment_type, value: 'cash'
+  = f.submit 'Update Order', :class => 'btn btn-primary'
+  = link_to "Delete Order", @order, method: :delete, data: { confirm: "Are you sure you want to cancel this order?" }, :class => 'btn btn-danger'
