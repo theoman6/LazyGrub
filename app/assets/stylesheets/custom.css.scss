@@ -351,6 +351,13 @@ th {
 	text-decoration: none !important;
 }
 
+.btn-success.active{
+	color: $secondary-color;
+}
+
+.btn-inverse.active{
+	color: $main-color;
+}
 
 footer { 
 	margin-top: 45px;
