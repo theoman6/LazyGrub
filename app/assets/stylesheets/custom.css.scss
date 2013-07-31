@@ -227,6 +227,12 @@ input {
 	height: auto !important;
 }
 
+.header-select{
+	background-color: $main-color;
+	color: $secondary-color;
+}
+
+
 
 aside { 
       section { 
@@ -353,6 +359,14 @@ th {
 
 .btn-success.active{
 	color: $secondary-color;
+}
+
+.btn-success:hover{
+	color: $secondary-color;
+}
+
+.btn-inverse:hover{
+	color: $main-color
 }
 
 .btn-inverse.active{
