@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
           choice
         end
         flash[:success] = 'Order placed'
-        redirect_to orders_path
+        redirect_to orders_path({:preset => 'placed'})
       else 
         flash[:alert] = "Order failed, try again"
         @items = choices
@@ -80,17 +80,27 @@ class OrdersController < ApplicationController
 
   def claim
     order = Order.find(params[:id])
-    order.claimer = current_user unless order.claimer
-    order.save
-    @preset = 'claimed'
-    redirect_to orders_path({:preset => 'claimed'})
+    if !order.claimer && order.available?
+      order.claimer = current_user 
+      order.save
+      flash[:success] = "You have successfully claimed that order. You have one hour to deliver it."
+      redirect_to orders_path({:preset => 'claimed'})
+    else 
+      flash[:alet] = "That order is no longer available"
+      redirect_to orders_path
+    end
   end
 
   def unclaim
     order = Order.find(params[:id])
-    order.claimer = nil 
-    order.save
-    redirect_to orders_path
+    if order.available?
+      order.claimer = nil 
+      order.save
+      flash[:success] = "You have unclaimed that order."
+      redirect_to orders_path
+    else
+      flash[:alet] = "You should have delivered that order already. It can no longer be unclaimed."
+    end
   end
 
   def edit

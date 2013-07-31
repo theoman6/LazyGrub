@@ -7,4 +7,8 @@ class Order < ActiveRecord::Base
   has_many :choices
   has_many :items, :through => :choices
   serialize :item_ids
+
+  def available?
+  	self.updated_at + 1.hour > Time.now
+  end
 end
