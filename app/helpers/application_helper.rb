@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def full_title(title)
-		base_title = "Snackage" 
+		base_title = "LazyGrub" 
 		if title.empty?
 			base_title
 		else "#{base_title} | #{title}"
