@@ -2,21 +2,21 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
   .navbar-inner
     .container
-      = link_to "Snackage", root_path, id: "logo"
+      = link_to "LazyGrub", root_path, id: "logo"
       %nav 
         %ul.nav.pull-right
           -if signed_in?
           = puts "clearance = #{current_user.clearance}"
             -if current_user.clearance.to_i > 0
               %li= link_to "Restaurant Portal", restaurants_path
-          %li= link_to "Home", root_path
-          %li= link_to "Orders", orders_path
-          %li= link_to "Help", help_path
+          %li= link_to "Home", root_path, class: 'nav-link'
+          %li= link_to "Orders", orders_path, class: 'nav-link'
+          %li= link_to "Help", help_path, class: 'nav-link'
           -if signed_in? 
-            %li=link_to 'Edit profile', edit_user_registration_path
-            %li=link_to 'Sign out', destroy_user_session_path, method: :delete
+            %li=link_to 'Edit profile', edit_user_registration_path, class: 'nav-link'
+            %li=link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link'
           -else
-            %li=link_to 'Sign up', new_user_registration_path
-            %li=link_to 'Sign in', new_user_session_path
+            %li=link_to 'Sign up', new_user_registration_path, class: 'nav-link'
+            %li=link_to 'Sign in', new_user_session_path, class: 'nav-link'
 
 
