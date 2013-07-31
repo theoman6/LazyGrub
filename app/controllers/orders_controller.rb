@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
         redirect_to orders_path
       else 
         flash[:alert] = "Order failed, try again"
-        binding.pry
         @items = choices
         render 'static_pages/home'
       end
