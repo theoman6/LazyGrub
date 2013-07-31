@@ -23,6 +23,17 @@ select.time {
 }
 
 
+.alert-error { background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4; }
+.alert-notice { background:#FFF6BF;color:#514721;border-color:#FFD324; }
+.alert-success { background:#DDFCD5;color:#000;border-color:#44A815; }
+.alert-alert { background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4; }
+
+.alert-error a {color:#8a1f11;}
+.alert-notice a {color:#514721;}
+.alert-success a {color:#264409;}
+.alert-alert a {color:#8a1f11;}
+
+
 .huge { 
   font-size: 10em;
   color: #8B0000;

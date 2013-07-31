@@ -79,7 +79,7 @@
 						- elsif order.claimer
 						- elsif order.user == current_user
 							=link_to "Revise/Cancel Order", edit_order_path(order.id), :class => "btn btn-danger"
-						- else
+						- elsif user_signed_in?
 							=link_to 'Claim Order', claim_order_path(order.id), :class => "btn btn-success"
 
 				%tr.btn.order-row.border-bottom{:id => "table_row_#{order.id}"}
