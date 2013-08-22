@@ -5,8 +5,10 @@
 	box-sizing: border-box
 }
 
-$main-color: #51a351;
+$main-color: #FF3366;
 $secondary-color: #222222;
+$blackhover: #514f4f;
+$redhover: #F03366;
 
 select.time { 
   width: 40%;
@@ -24,7 +26,8 @@ select.time {
 
 
 .alert-error { background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4; }
-.alert-notice { background:#FFF6BF;color:#514721;border-color:#FFD324; }
+.alert-notice { background:#FFF6BF;color:#514721;border-color:#FFD324; margin-top: 20px;
+  margin-bottom: -34px;}
 .alert-success { background:#DDFCD5;color:#000;border-color:#44A815; }
 .alert-alert { background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4; }
 
@@ -323,6 +326,7 @@ h2 {
 	text-align: center;
 	font-weight: normal;
 	color: #999;
+	margin-top: 40px;
 }
 
 p { 
@@ -341,17 +345,20 @@ p {
 .tb-m {
 	margin-left: auto;
 	margin-right: auto;
+
 }
 
 #logo { 
 	float: left;
 	margin-right: 10px;
-	font-size: 1.7em;
+	font-size: 2.7em;
 	color: #fff;
 	letter-spacing: -1px;
 	padding-top: 9px;
 	font-weight: bold;
 	line-height: 1;
+	margin-top: 5px;
+	margin-left: -75px
 }
 
 th {
@@ -368,21 +375,37 @@ th {
 	text-decoration: none !important;
 }
 
-.btn-success.active{
-	color: $secondary-color;
-}
-
-.btn-success:hover{
-	color: $secondary-color;
-}
-
 .btn-inverse:hover{
-	color: $main-color
+	text-decoration: none;
 }
 
 .btn-inverse.active{
-	color: $main-color;
+	color: grey;
 }
+
+
+.btn-success:hover{
+	color: white;
+	background-color: $main-color !important;
+	text-decoration: none;
+	text-transform: none;
+	border:none;
+	background-image: none;
+}
+
+.btn-success.active{
+	color: silver;
+	background-color: $redhover;
+	border:none;
+}
+
+
+.btn-success{
+	background-image:none !important;
+	background-color: $main-color !important;
+	border:none;
+}
+
 
 footer { 
 	margin-top: 45px;
@@ -395,7 +418,7 @@ footer {
 		color: #222;
 		}
 	}
-	
+
 	small {
 		float: left;
 	}
@@ -451,4 +474,69 @@ footer {
 
 .room-top{
 	margin-top: 5px;
+}
+
+.order{
+	float:left;
+	color: $main-color;
+	font-size: 60px;
+}
+
+.order:hover{
+	text-decoration: none;
+	color: $redhover;
+}
+
+.deliver{
+	float:right;
+	color: $secondary-color;
+	font-size: 60px;
+}
+
+.deliver:hover{
+	text-decoration: none;
+	color: $blackhover;
+}
+
+.navbar-inner{
+	height: 65px;
+}
+.navbar .nav.pull-right {
+  float: right;
+  margin-top: 12px;
+  font-size: 1.2em;
+  margin-right: -150px
+}
+
+.dataTables_wrapper {
+	position: relative;
+	clear: both;
+	margin-top: 40px;
+}
+
+h1{
+	margin-top: 75px;
+}
+
+.header-select{
+	background-color:whitesmoke;
+}
+
+.close{
+	margin-top: 40px;
+}
+
+.btn{
+	text-shadow:none !important;
+}
+
+.btn-large {
+     float:right;
+     margin-top: 30px;
+     
+}
+
+h3 {
+  font-size: 24px;
+  margin-top: 60px;
 }

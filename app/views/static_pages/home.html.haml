@@ -69,6 +69,6 @@
         %button{:class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
         =f.submit value: 'Place Order', class: "btn btn-primary"
   .home_rest
-    %h1=link_to "Hungry?", '#order-form', :role => 'button', :class => 'btn btn-xlarge btn-block btn-inverse', :'data-toggle' => 'modal'
-    %h1=link_to "No, but I'll make deliveries", orders_path, class: "btn btn-xlarge btn-block btn-success"
+    %h1=link_to "Hungry?", '#order-form',  class: 'order', :'data-toggle' => 'modal'
+    %h1=link_to "No, But I'll Deliver", orders_path, class: 'deliver'
 
