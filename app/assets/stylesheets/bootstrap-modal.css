@@ -7,6 +7,9 @@
  *
  */
 
+
+
+
 .modal-open {
 	overflow: hidden;
 }
@@ -90,7 +93,7 @@
 }
 
 .modal.container {
-  width: 940px;
+  width: 20000px;
   margin-left: -470px;
 }
 
@@ -212,3 +215,10 @@ Copyright (c) 2012 Dan Eden*/
 	-o-animation-name: shake;
 	animation-name: shake;
 }
+
+
+.close{
+	margin-top: 20px !important;
+}
+ 
+
