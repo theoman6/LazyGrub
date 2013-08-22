@@ -18,6 +18,7 @@ $(document).ready(function(){
 	});
 
 	$(".filter-nav").click(function() { 
+		console.log(9)
 		$(this).button("toggle");
 		button_filter();
 		$(this).button("toggle");

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where('updated_at > ?', 1.month.ago)
+    @orders = Order.all.select{|order| order.available? || current_user == order.claimer || current_user == order.user}
     @current_count = @orders.count{|order| order.updated_at + 1.hour > Time.now}
     @preset = params[:preset] || 'index'
     @order_index = true
@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
 
   def claim
     order = Order.find(params[:id])
-    if !order.claimer && order.available?
+    if order.available?
       order.claimer = current_user 
       order.save
       flash[:success] = "You have successfully claimed that order. You have one hour to deliver it."
@@ -93,13 +93,14 @@ class OrdersController < ApplicationController
 
   def unclaim
     order = Order.find(params[:id])
-    if order.available?
+    if order.current?
       order.claimer = nil 
       order.save
       flash[:success] = "You have unclaimed that order."
       redirect_to orders_path
     else
       flash[:alet] = "You should have delivered that order already. It can no longer be unclaimed."
+      redirect_to orders_path({:preset => 'claimed'})
     end
   end
 

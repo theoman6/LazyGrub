@@ -1,10 +1,4 @@
 -provide(:title, "Orders")
-.left-bar
-	.btn-group.btn-group-vertical{:'data-toggle' => 'buttons-checkbox'}
-		%h5 Show Only:
-		%button.btn.btn-inverse.filter-nav{:type => 'button', :class => "#{@preset == 'index' ? 'active' : ''}", :value => 'Unclaimed Orders'.hash.to_s} Unclaimed Orders
-		%button.btn.btn-success.filter-nav{:type => 'button', :class => "#{@preset == 'placed' ? 'active' : ''}", :value => 'My Orders'.hash.to_s} My Orders
-		%button.btn.btn-inverse.filter-nav{:type => 'button', :class => "#{@preset == 'claimed' ? 'active' : ''}", :value => 'My Deliveries'.hash.to_s} My Deliveries
 .right-bar
 	.search.clearfix
 		%h5 Search Orders: 
@@ -24,7 +18,10 @@
 				%select.header-select#asc-desc
 					%option{:value => 'asc'}Asc
 					%option{:value => 'desc'}Desc
-
+.btn-group.btn-group-horizontal.filter-buttons{:'data-toggle' => 'buttons-checkbox'}
+	%button.btn.btn-inverse.filter-nav.btn-large{:type => 'button', :class => "#{@preset == 'index' || @preset == 'placed' ? 'active' : ''}", :value => 'Available Orders'.hash.to_s} Available Orders
+	%button.btn.btn-success.filter-nav.btn-large{:type => 'button', :class => "#{@preset == 'placed' ? 'active' : ''}", :value => 'My Orders'.hash.to_s} My Orders
+	%button.btn.btn-inverse.filter-nav.btn-large{:type => 'button', :class => "#{@preset == 'claimed' ? 'active' : ''}", :value => 'My Deliveries'.hash.to_s} My Deliveries
 -unless @orders.length == 0
 	%table{:id => 'orders', :class => 'display'}
 		%thead
@@ -75,7 +72,6 @@
 						%button{:class => 'btn btn-inverse', :'data-dismiss' => 'modal', :'aria-hidden' => true} Close
 						- if order.claimer && order.claimer == current_user
 							=link_to 'Unclaim Order', unclaim_order_path(order.id), :class => "btn btn-danger"
-						- elsif order.claimer
 						- elsif order.user == current_user
 							=link_to "Revise/Cancel Order", edit_order_path(order.id), :class => "btn btn-danger"
 						- elsif user_signed_in? && order.available?
@@ -97,8 +93,7 @@
 					%td{:title => "Order Expiration:"}= (order.updated_at + 1.hour).strftime("%l:%M %p")
 					%td=order.updated_at
 					%td
-						= " #{'Current Orders'.hash.to_s}" if (order.updated_at + 1.hour) > Time.now
-						= " #{'Unclaimed Orders'.hash.to_s}" if !order.claimer
+						= " #{'Available Orders'.hash.to_s}" if order.available?
 						= " #{'My Orders'.hash.to_s}" if current_user == order.user
 						= " #{'My Deliveries'.hash.to_s}" if order.claimer == current_user
 -else 

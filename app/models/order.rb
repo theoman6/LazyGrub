@@ -9,6 +9,10 @@ class Order < ActiveRecord::Base
   serialize :item_ids
 
   def available?
-  	self.updated_at + 1.hour > Time.now
+  	 self.current? && !self.claimer
+  end
+
+  def current? 
+    self.updated_at + 1.hour > Time.now
   end
 end
