@@ -375,6 +375,16 @@ th {
 	text-decoration: none !important;
 }
 
+.notifications{
+	color: $main-color !important;
+}
+
+.notifications:hover{
+	color: grey !important;
+}
+
+
+
 .btn-inverse:hover{
 	text-decoration: none;
 }

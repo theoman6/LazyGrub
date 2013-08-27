@@ -6,6 +6,7 @@
       %nav 
         %ul.nav.pull-right
           -if signed_in?
+          %li= link_to "#{current_user.notifications.length}", root_path, :class => 'notifications' unless current_user.notifications.empty?
           = puts "clearance = #{current_user.clearance}"
             -if current_user.clearance.to_i > 0
               %li= link_to "Restaurant Portal", restaurants_path, class: 'nav-link'
