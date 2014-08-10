@@ -13,6 +13,7 @@ gem 'jquery-rails', '2.0.2'
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
 ruby '1.9.3'
+gem 'roo' 
 
 
 
